@@ -56,7 +56,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .intro-banner{background:linear-gradient(135deg,var(--p50),var(--t50));border:0.5px solid var(--p100);border-radius:14px;padding:1rem 1.125rem;margin-bottom:1.25rem;position:relative;}
 .intro-banner-title{font-size:14px;font-weight:600;color:var(--p900);margin-bottom:4px;}
 .intro-banner-body{font-size:13px;color:var(--p800);line-height:1.6;}
-.intro-banner-body a{color:var(--p600);font-weight:500;text-decoration:underline;background:none;border:none;cursor:pointer;font-family:inherit;font-size:13px;}
+.intro-banner-body a{color:var(--p600);font-weight:500;text-decoration:underline;cursor:pointer;}
 .intro-dismiss{position:absolute;top:10px;right:12px;background:none;border:none;font-size:18px;color:var(--p400);cursor:pointer;line-height:1;padding:0;}
 
 /* ── TODAY HERO ── */
@@ -185,17 +185,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .lib-content .term:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
 .lib-content .term-word{font-size:14px;font-weight:600;color:var(--p800);margin-bottom:3px;}
 .lib-content .term-def{font-size:13px;color:var(--g600);line-height:1.6;}
-/* weekly reading cards inside library */
-.week-reading-item{border-radius:12px;overflow:hidden;margin-bottom:0.75rem;border:0.5px solid var(--g100);}
-.week-reading-hdr{padding:0.875rem 1.125rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer;background:linear-gradient(135deg,#3C3489,#534AB7,#D4537E);}
-.week-reading-hdr-left{display:flex;flex-direction:column;}
-.week-reading-eyebrow{font-size:10px;font-weight:600;color:rgba(255,255,255,0.65);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:2px;}
-.week-reading-title{font-size:14px;font-weight:600;color:white;}
-.week-reading-chevron{color:rgba(255,255,255,0.65);font-size:16px;transition:transform 0.2s;flex-shrink:0;}
+/* weekly reading cards inside library — same no-fill style as lib-card */
+.week-reading-item{background:white;border-radius:14px;border:0.5px solid var(--g100);overflow:hidden;margin-bottom:0.75rem;}
+.week-reading-hdr{padding:1rem 1.25rem;display:flex;align-items:center;gap:12px;cursor:pointer;background:white;}
+.week-reading-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:linear-gradient(135deg,var(--p800),var(--p400));}
+.week-reading-hdr-left{display:flex;flex-direction:column;flex:1;min-width:0;}
+.week-reading-eyebrow{font-size:11px;font-weight:600;color:var(--p600);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:1px;}
+.week-reading-title{font-size:15px;font-weight:600;color:var(--g900);}
+.week-reading-chevron{color:var(--g400);font-size:18px;transition:transform 0.2s;flex-shrink:0;margin-left:auto;}
 .week-reading-chevron.open{transform:rotate(90deg);}
-.week-reading-body{display:none;padding:1.125rem;background:white;}
+.week-reading-body{display:none;border-top:0.5px solid var(--g100);}
 .week-reading-body.open{display:block;}
-.week-reading-body-text{font-size:14px;color:var(--g700,#4a4947);line-height:1.75;}
+.week-reading-body-text{font-size:14px;color:var(--g700,#4a4947);line-height:1.75;padding:1.25rem;}
 .week-reading-body-text p{margin-bottom:0.875rem;}
 .week-reading-body-text p:last-child{margin-bottom:0;}
 .week-reading-body-text strong{font-weight:600;color:var(--g900);}
@@ -543,7 +544,7 @@ function loadTodayTab(user){
     html+=`<div class="intro-banner" id="intro-banner">
       <button class="intro-dismiss" onclick="dismissBanner('intro')" aria-label="Dismiss">×</button>
       <div class="intro-banner-title">Welcome to your 8-week journey.</div>
-      <div class="intro-banner-body">Before you dive in, take a moment to read the introduction — it explains how the program works and what to expect. You can always find it later in the <button class="intro-banner a" onclick="switchToLibrary()">Library tab</button>.</div>
+      <div class="intro-banner-body">Before you dive in, take a moment to read the <a onclick="openIntroFromBanner(event)"><strong>introduction</strong></a> — it explains how the program works and what to expect. You can always find it later in the <a onclick="switchToLibrary(event)">Library tab</a>.</div>
     </div>`;
   }
 
@@ -853,6 +854,7 @@ function buildLibrary(){
     ${WEEKS.map((w,i)=>`
     <div class="week-reading-item">
       <div class="week-reading-hdr" onclick="toggleWeekReading(${i})">
+        <div class="week-reading-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 5h5v11H4zM11 5h5v11h-5z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
         <div class="week-reading-hdr-left">
           <div class="week-reading-eyebrow">Week ${i+1}</div>
           <div class="week-reading-title">${w.theme}</div>
@@ -929,9 +931,26 @@ function dismissBanner(key){
   const el=document.getElementById('intro-banner');
   if(el)el.remove();
 }
-function switchToLibrary(){
+function switchToLibrary(ev){
+  if(ev)ev.preventDefault();
   const btn=document.querySelector('.nav-tab:nth-child(4)');
   if(btn)switchTab('library',btn);
+}
+function openIntroFromBanner(ev){
+  if(ev)ev.preventDefault();
+  switchToLibrary();
+  // Open the intro card in the library after a brief render delay
+  setTimeout(()=>{
+    const body=document.getElementById('lib-intro');
+    const chev=document.getElementById('chev-intro');
+    if(body&&!body.classList.contains('open')){
+      body.classList.add('open');
+      if(chev)chev.classList.add('open');
+    }
+    // Scroll to it
+    const card=body?body.closest('.lib-card'):null;
+    if(card)card.scrollIntoView({behavior:'smooth',block:'start'});
+  },50);
 }
 
 // ══ ENTRY MODAL ══
