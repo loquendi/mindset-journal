@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Mindset Journal</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --purple-50:#EEEDFE;--purple-100:#CECBF6;--purple-200:#AFA9EC;
+  --purple-400:#7F77DD;--purple-600:#534AB7;--purple-800:#3C3489;--purple-900:#26215C;
+  --teal-50:#E1F5EE;--teal-100:#9FE1CB;--teal-400:#1D9E75;--teal-600:#0F6E56;--teal-800:#085041;
+  --amber-50:#FAEEDA;--amber-100:#FAC775;--amber-400:#BA7517;--amber-600:#854F0B;
+  --coral-50:#FAECE7;--coral-100:#F5C4B3;--coral-400:#D85A30;--coral-600:#993C1D;
+  --gray-50:#F1EFE8;--gray-100:#D3D1C7;--gray-200:#B4B2A9;
+  --gray-400:#888780;--gray-600:#5F5E5A;--gray-800:#444441;--gray-900:#2C2C2A;
+  --red-50:#FCEBEB;--red-600:#A32D2D;
+}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  background:var(--gray-50);color:var(--gray-900);
+  min-height:100vh;max-width:480px;margin:0 auto;
+  -webkit-text-size-adjust:100%;
+}
+
+/* ── AUTH ── */
+#auth-screen{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:2rem 1.5rem;gap:1.75rem;
+}
+.app-logo{
+  width:64px;height:64px;background:var(--purple-600);
+  border-radius:18px;display:flex;align-items:center;justify-content:center;
+}
+.auth-card{
+  background:white;border-radius:16px;border:0.5px solid var(--gray-100);
+  padding:1.75rem;width:100%;max-width:360px;
+}
+.auth-card h2{font-size:20px;font-weight:600;color:var(--gray-900);margin-bottom:6px;}
+.auth-card p{font-size:14px;color:var(--gray-600);margin-bottom:1.5rem;line-height:1.5;}
+.field-label{font-size:13px;font-weight:500;color:var(--gray-800);margin-bottom:5px;display:block;}
+.text-input{
+  width:100%;padding:10px 12px;border:0.5px solid var(--gray-200);
+  border-radius:10px;font-size:15px;color:var(--gray-900);background:white;
+  outline:none;margin-bottom:1rem;-webkit-appearance:none;font-family:inherit;
+}
+.text-input:focus{border-color:var(--purple-400);box-shadow:0 0 0 3px var(--purple-50);}
+.btn-primary{
+  width:100%;padding:12px;background:var(--purple-600);color:white;
+  border:none;border-radius:10px;font-size:15px;font-weight:500;cursor:pointer;
+  font-family:inherit;transition:background 0.15s;
+}
+.btn-primary:hover{background:var(--purple-800);}
+.auth-toggle{text-align:center;margin-top:1rem;font-size:13px;color:var(--gray-600);}
+.auth-toggle button{
+  background:none;border:none;color:var(--purple-600);font-size:13px;
+  font-weight:500;cursor:pointer;text-decoration:underline;font-family:inherit;
+}
+.error-msg{
+  background:var(--red-50);color:var(--red-600);border-radius:8px;
+  padding:10px 12px;font-size:13px;margin-bottom:1rem;display:none;
+}
+
+/* ── HEADER ── */
+#app-screen{display:none;min-height:100vh;}
+.app-header{
+  background:white;border-bottom:0.5px solid var(--gray-100);
+  padding:0.875rem 1.25rem;display:flex;align-items:center;
+  justify-content:space-between;position:sticky;top:0;z-index:20;
+}
+.header-logo{
+  width:32px;height:32px;background:var(--purple-600);
+  border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.header-title{font-size:15px;font-weight:600;color:var(--gray-900);}
+.header-user{font-size:12px;color:var(--gray-400);}
+.panic-btn{
+  background:var(--coral-50);border:0.5px solid var(--coral-100);
+  border-radius:20px;padding:6px 12px;font-size:12px;font-weight:500;
+  color:var(--coral-600);cursor:pointer;font-family:inherit;white-space:nowrap;
+}
+.logout-link{
+  font-size:12px;color:var(--gray-400);background:none;border:none;
+  cursor:pointer;font-family:inherit;text-decoration:underline;
+}
+
+/* ── NAV ── */
+.nav-tabs{
+  display:flex;background:white;border-bottom:0.5px solid var(--gray-100);
+  padding:0 0.5rem;position:sticky;top:58px;z-index:19;
+}
+.nav-tab{
+  flex:1;padding:0.75rem 0;text-align:center;font-size:13px;font-weight:500;
+  color:var(--gray-400);border-bottom:2px solid transparent;cursor:pointer;
+  background:none;border-top:none;border-left:none;border-right:none;
+  font-family:inherit;transition:color 0.15s,border-color 0.15s;
+}
+.nav-tab.active{color:var(--purple-600);border-bottom-color:var(--purple-600);}
+
+/* ── SCREENS ── */
+.screen{display:none;padding:1.25rem;padding-bottom:2rem;}
+.screen.active{display:block;}
+
+/* ── TODAY ── */
+.date-chip{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--purple-50);color:var(--purple-800);
+  border-radius:20px;padding:6px 14px;font-size:13px;font-weight:500;margin-bottom:1rem;
+}
+.streak-banner{
+  background:white;border-radius:14px;border:0.5px solid var(--gray-100);
+  padding:1rem 1.25rem;display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem;
+}
+.streak-flame{
+  width:44px;height:44px;background:var(--amber-50);border-radius:12px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.streak-count{font-size:26px;font-weight:700;color:var(--gray-900);line-height:1;}
+.streak-label{font-size:12px;color:var(--gray-400);margin-top:2px;}
+.streak-best{margin-left:auto;text-align:right;}
+.streak-best-num{font-size:16px;font-weight:600;color:var(--purple-600);}
+.streak-best-label{font-size:11px;color:var(--gray-400);}
+
+.week-theme-card{
+  background:var(--purple-50);border:0.5px solid var(--purple-100);
+  border-radius:12px;padding:0.875rem 1.125rem;margin-bottom:1.25rem;
+}
+.week-theme-label{font-size:11px;font-weight:600;color:var(--purple-400);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:3px;}
+.week-theme-name{font-size:14px;font-weight:600;color:var(--purple-800);}
+
+.prompt-card{
+  background:white;border-radius:14px;border:0.5px solid var(--gray-100);
+  padding:1.25rem;margin-bottom:1rem;
+}
+.prompt-week-tag{
+  display:inline-block;font-size:11px;font-weight:600;
+  color:var(--purple-600);background:var(--purple-50);
+  border-radius:20px;padding:3px 10px;margin-bottom:8px;
+}
+.prompt-text{
+  font-size:15px;font-weight:500;color:var(--gray-900);
+  line-height:1.6;margin-bottom:4px;
+}
+.prompt-note{
+  font-size:13px;color:var(--gray-400);font-style:italic;
+  line-height:1.5;margin-bottom:10px;border-left:2.5px solid var(--purple-100);
+  padding-left:10px;margin-top:8px;
+}
+.prompt-textarea{
+  width:100%;min-height:90px;padding:10px 12px;
+  border:0.5px solid var(--gray-200);border-radius:10px;
+  font-size:14px;color:var(--gray-900);background:var(--gray-50);
+  resize:vertical;font-family:inherit;line-height:1.6;outline:none;
+}
+.prompt-textarea:focus{
+  border-color:var(--purple-400);box-shadow:0 0 0 3px var(--purple-50);background:white;
+}
+.prompt-textarea::placeholder{color:var(--gray-400);}
+.skip-note{font-size:12px;color:var(--gray-400);text-align:center;margin-bottom:0.75rem;font-style:italic;}
+.save-btn{
+  width:100%;padding:14px;background:var(--purple-600);color:white;
+  border:none;border-radius:12px;font-size:15px;font-weight:500;
+  cursor:pointer;font-family:inherit;transition:background 0.15s;
+}
+.save-btn:hover{background:var(--purple-800);}
+.already-journaled{
+  background:var(--teal-50);border:0.5px solid var(--teal-100);
+  border-radius:14px;padding:1rem 1.25rem;margin-bottom:1.25rem;
+  display:flex;align-items:flex-start;gap:10px;
+}
+.already-journaled p{font-size:14px;color:var(--teal-600);line-height:1.5;}
+.already-journaled strong{color:var(--teal-800);font-weight:600;}
+.view-entry-btn{
+  background:none;border:none;color:var(--teal-600);
+  font-size:13px;font-weight:500;cursor:pointer;text-decoration:underline;
+  padding:0;margin-top:4px;display:block;font-family:inherit;
+}
+
+/* ── HISTORY ── */
+.section-header{
+  font-size:12px;font-weight:600;color:var(--gray-400);
+  letter-spacing:0.05em;text-transform:uppercase;margin-bottom:0.875rem;
+}
+.entry-card{
+  background:white;border-radius:14px;border:0.5px solid var(--gray-100);
+  padding:1rem 1.25rem;margin-bottom:0.75rem;cursor:pointer;
+  transition:border-color 0.15s;
+}
+.entry-card:hover{border-color:var(--purple-200);}
+.entry-date-label{font-size:12px;font-weight:600;color:var(--purple-600);margin-bottom:4px;}
+.entry-theme{font-size:11px;color:var(--gray-400);margin-bottom:6px;}
+.entry-preview{
+  font-size:14px;color:var(--gray-600);line-height:1.5;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.empty-state{text-align:center;padding:3rem 1rem;color:var(--gray-400);}
+.empty-state p{font-size:14px;line-height:1.7;}
+
+/* ── PROGRESS ── */
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.25rem;}
+.stat-card{
+  background:white;border-radius:12px;border:0.5px solid var(--gray-100);
+  padding:1rem;text-align:center;
+}
+.stat-num{font-size:28px;font-weight:700;color:var(--gray-900);line-height:1;margin-bottom:4px;}
+.stat-label{font-size:12px;color:var(--gray-400);}
+.prog-section{
+  background:white;border-radius:14px;border:0.5px solid var(--gray-100);
+  padding:1.25rem;margin-bottom:1.25rem;
+}
+.prog-title{font-size:14px;font-weight:600;color:var(--gray-900);margin-bottom:1rem;}
+.week-days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;}
+.week-day{display:flex;flex-direction:column;align-items:center;gap:5px;}
+.week-day-name{font-size:10px;color:var(--gray-400);font-weight:500;text-transform:uppercase;}
+.week-dot{
+  width:28px;height:28px;border-radius:50%;background:var(--gray-100);
+  display:flex;align-items:center;justify-content:center;
+}
+.week-dot.done{background:var(--purple-600);}
+.week-dot.today-empty{border:2px solid var(--purple-400);background:transparent;}
+.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;}
+.cal-day-name{text-align:center;font-size:10px;font-weight:600;color:var(--gray-400);padding-bottom:4px;}
+.cal-day{
+  aspect-ratio:1;border-radius:6px;display:flex;align-items:center;
+  justify-content:center;font-size:11px;color:var(--gray-400);
+}
+.cal-day.has-entry{background:var(--purple-100);color:var(--purple-800);font-weight:600;}
+.cal-day.today{border:1.5px solid var(--purple-400);color:var(--purple-600);font-weight:600;}
+.cal-day.today.has-entry{background:var(--purple-600);color:white;border-color:var(--purple-600);}
+
+/* ── MODAL (entry detail) ── */
+.modal-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,0.35);z-index:100;
+}
+.modal-overlay.open{display:block;}
+.modal-sheet{
+  background:white;border-radius:20px 20px 0 0;
+  position:fixed;bottom:0;left:0;right:0;max-height:85vh;
+  overflow-y:auto;padding:1.5rem;max-width:480px;margin:0 auto;
+}
+.modal-handle{
+  width:36px;height:4px;background:var(--gray-100);
+  border-radius:2px;margin:0 auto 1.25rem;
+}
+.modal-week-tag{
+  display:inline-block;font-size:11px;font-weight:600;
+  color:var(--purple-600);background:var(--purple-50);
+  border-radius:20px;padding:3px 10px;margin-bottom:8px;
+}
+.modal-date{font-size:16px;font-weight:600;color:var(--gray-900);margin-bottom:1rem;}
+.modal-q{
+  font-size:12px;font-weight:600;color:var(--gray-400);
+  text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px;
+}
+.modal-prompt-text{font-size:14px;color:var(--gray-600);font-style:italic;margin-bottom:8px;line-height:1.5;}
+.modal-a{font-size:15px;color:var(--gray-900);line-height:1.7;white-space:pre-wrap;}
+.modal-divider{border-top:0.5px solid var(--gray-100);margin:1.25rem 0;}
+.modal-close{
+  width:100%;padding:12px;background:var(--gray-50);
+  border:0.5px solid var(--gray-200);border-radius:10px;
+  font-size:14px;color:var(--gray-800);cursor:pointer;
+  margin-top:1rem;font-weight:500;font-family:inherit;
+}
+
+/* ── GROUNDING MODAL ── */
+#grounding-modal .modal-sheet{padding-bottom:2rem;}
+.grounding-intro{font-size:14px;color:var(--gray-600);line-height:1.6;margin-bottom:1.25rem;}
+.grounding-card{
+  border-radius:12px;border:0.5px solid var(--gray-100);
+  padding:1rem 1.125rem;margin-bottom:0.875rem;background:white;
+}
+.grounding-card-title{font-size:14px;font-weight:600;color:var(--gray-900);margin-bottom:6px;}
+.grounding-card-body{font-size:13px;color:var(--gray-600);line-height:1.6;}
+.grounding-card-body li{margin-left:1rem;margin-bottom:2px;}
+.grounding-card-note{
+  font-size:12px;color:var(--gray-400);font-style:italic;
+  margin-top:6px;border-top:0.5px solid var(--gray-100);padding-top:6px;
+}
+.panic-script{
+  background:var(--purple-50);border:0.5px solid var(--purple-100);
+  border-radius:14px;padding:1rem 1.25rem;margin-bottom:1rem;
+}
+.panic-script p{font-size:14px;color:var(--purple-800);line-height:1.8;}
+.panic-script strong{color:var(--purple-900);}
+
+/* ── AUTH CHOICE ── */
+.auth-choice{width:100%;max-width:360px;display:flex;flex-direction:column;gap:10px;}
+.btn-secondary{
+  width:100%;padding:12px;background:white;color:var(--purple-600);
+  border:0.5px solid var(--purple-200);border-radius:10px;font-size:15px;
+  font-weight:500;cursor:pointer;font-family:inherit;transition:background 0.15s;
+}
+.btn-secondary:hover{background:var(--purple-50);}
+
+/* ── TOAST ── */
+.toast{
+  position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--gray-900);color:white;padding:10px 20px;
+  border-radius:20px;font-size:14px;font-weight:500;opacity:0;
+  transition:all 0.25s;z-index:300;white-space:nowrap;pointer-events:none;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+</style>
+</head>
+<body>
+
+<!-- ═══ AUTH SCREEN ═══ -->
+<div id="auth-screen">
+  <div class="app-logo">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+      <path d="M9 10C9 8.9 9.9 8 11 8H21C22.1 8 23 8.9 23 10V22C23 23.1 22.1 24 21 24H11C9.9 24 9 23.1 9 22V10Z" stroke="white" stroke-width="1.5"/>
+      <path d="M13 13H19M13 16.5H17M13 20H16" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <div style="text-align:center;">
+    <h1 style="font-size:24px;font-weight:700;color:var(--gray-900);margin-bottom:6px;">Mindset Journal</h1>
+    <p style="font-size:15px;color:var(--gray-400);line-height:1.6;">An 8-week journey of self-awareness,<br>compassion, and growth.</p>
+  </div>
+
+  <!-- Landing choice -->
+  <div class="auth-choice" id="auth-choice">
+    <button class="btn-primary" onclick="showSignup()">Create your journal</button>
+    <button class="btn-secondary" onclick="showLogin()">I already have an account</button>
+  </div>
+
+  <!-- Login -->
+  <div class="auth-card" id="login-card" style="display:none;">
+    <h2>Welcome back</h2>
+    <p>Your journal is private — only you can access it.</p>
+    <div id="login-error" class="error-msg"></div>
+    <label class="field-label" for="login-email">Email</label>
+    <input class="text-input" type="email" id="login-email" placeholder="you@example.com" autocomplete="email">
+    <label class="field-label" for="login-pw">Password</label>
+    <input class="text-input" type="password" id="login-pw" placeholder="••••••••" autocomplete="current-password">
+    <button class="btn-primary" onclick="doLogin()">Sign in</button>
+    <div class="auth-toggle"><button onclick="showAuthChoice()">← Back</button></div>
+  </div>
+
+  <!-- Signup -->
+  <div class="auth-card" id="signup-card" style="display:none;">
+    <h2>Start your journal</h2>
+    <p>8 weeks of guided prompts. Your entries are completely private.</p>
+    <div id="signup-error" class="error-msg"></div>
+    <label class="field-label" for="signup-name">Your name</label>
+    <input class="text-input" type="text" id="signup-name" placeholder="First name" autocomplete="given-name">
+    <label class="field-label" for="signup-email">Email</label>
+    <input class="text-input" type="email" id="signup-email" placeholder="you@example.com" autocomplete="email">
+    <label class="field-label" for="signup-pw">Password</label>
+    <input class="text-input" type="password" id="signup-pw" placeholder="At least 6 characters" autocomplete="new-password">
+    <button class="btn-primary" onclick="doSignup()">Begin the journey</button>
+    <div class="auth-toggle">Already have an account? <button onclick="showLogin()">Sign in</button> &nbsp;·&nbsp; <button onclick="showAuthChoice()">← Back</button></div>
+  </div>
+</div>
+
+<!-- ═══ APP SCREEN ═══ -->
+<div id="app-screen">
+  <div class="app-header">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div class="header-logo">
+        <svg width="16" height="16" viewBox="0 0 32 32" fill="none">
+          <path d="M9 10C9 8.9 9.9 8 11 8H21C22.1 8 23 8.9 23 10V22C23 23.1 22.1 24 21 24H11C9.9 24 9 23.1 9 22V10Z" stroke="white" stroke-width="1.5"/>
+          <path d="M13 13H19M13 16.5H17M13 20H16" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div>
+        <div class="header-title">Mindset Journal</div>
+        <div class="header-user" id="header-user"></div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <button class="panic-btn" onclick="openGrounding()">Panic button</button>
+      <button class="logout-link" onclick="doLogout()">Sign out</button>
+    </div>
+  </div>
+
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="switchTab('today',this)">Today</button>
+    <button class="nav-tab" onclick="switchTab('history',this)">History</button>
+    <button class="nav-tab" onclick="switchTab('progress',this)">Progress</button>
+  </div>
+
+  <!-- TODAY TAB -->
+  <div id="tab-today" class="screen active">
+    <div class="date-chip">
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+        <rect x="1" y="2" width="11" height="10" rx="2" stroke="var(--purple-600)" stroke-width="1.2"/>
+        <path d="M4 1V3M9 1V3M1 5H12" stroke="var(--purple-600)" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+      <span id="today-date-label"></span>
+    </div>
+
+    <div class="streak-banner">
+      <div class="streak-flame">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2C10 5 8 6 9 10C7 9 6 7 7 5C4 7 3 11 5 14C6 16 8 18 10 18.5C9 17 9 15.5 10 14.5C11 16 11 17.5 12 18.5C13 17.5 13 16 12 14.5C13 15.5 13 17 12 18.5C14 18 16 16 17 14C19 11 18 7 15 5C16 7 15 9 13 10C14 6 12 2 12 2Z" fill="var(--amber-400)"/>
+        </svg>
+      </div>
+      <div>
+        <div class="streak-count" id="streak-count">0</div>
+        <div class="streak-label">day streak</div>
+      </div>
+      <div class="streak-best">
+        <div class="streak-best-num" id="best-streak">0</div>
+        <div class="streak-best-label">best streak</div>
+      </div>
+    </div>
+
+    <div id="today-content"></div>
+  </div>
+
+  <!-- HISTORY TAB -->
+  <div id="tab-history" class="screen">
+    <div class="section-header">Past entries</div>
+    <div id="history-list"></div>
+  </div>
+
+  <!-- PROGRESS TAB -->
+  <div id="tab-progress" class="screen">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num" id="stat-total">0</div>
+        <div class="stat-label">total entries</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="stat-streak">0</div>
+        <div class="stat-label">day streak</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="stat-best">0</div>
+        <div class="stat-label">best streak</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="stat-thismonth">0</div>
+        <div class="stat-label">this month</div>
+      </div>
+    </div>
+    <div class="prog-section">
+      <div class="prog-title">This week</div>
+      <div class="week-days" id="week-days"></div>
+    </div>
+    <div class="prog-section">
+      <div class="prog-title" id="cal-title"></div>
+      <div class="calendar-grid" id="cal-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ENTRY DETAIL MODAL ═══ -->
+<div class="modal-overlay" id="entry-modal" onclick="closeEntryModal(event)">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div id="modal-week-tag"></div>
+    <div class="modal-date" id="modal-date"></div>
+    <div id="modal-content"></div>
+    <button class="modal-close" onclick="closeEntryModalDirect()">Close</button>
+  </div>
+</div>
+
+<!-- ═══ GROUNDING MODAL ═══ -->
+<div class="modal-overlay" id="grounding-modal" onclick="closeGroundingModal(event)">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <p style="font-size:17px;font-weight:600;color:var(--gray-900);margin-bottom:8px;">Grounding practices</p>
+    <p class="grounding-intro">Use these anytime you need to return to the present moment. Even two or three minutes can create a meaningful shift.</p>
+
+    <div class="panic-script">
+      <p style="font-size:12px;font-weight:600;color:var(--purple-600);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;">Panic script — when things feel like too much</p>
+      <p>
+        <strong>1.</strong> Name 1 safe place right now (even just the floor beneath your feet).<br>
+        <strong>2.</strong> Notice 1 color in the room.<br>
+        <strong>3.</strong> Press your feet into the floor and whisper: <em>"I am here. I am okay right now."</em><br>
+        <strong>4.</strong> Exhale slowly and completely.
+      </p>
+    </div>
+
+    <div class="grounding-card">
+      <div class="grounding-card-title">5-4-3-2-1 body awareness</div>
+      <div class="grounding-card-body">
+        Name out loud (or write):<br>
+        <ul style="margin-top:6px;">
+          <li><strong>5</strong> things you can see</li>
+          <li><strong>4</strong> things you can physically feel</li>
+          <li><strong>3</strong> things you can hear</li>
+          <li><strong>2</strong> things you can smell</li>
+          <li><strong>1</strong> thing you can taste</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grounding-card">
+      <div class="grounding-card-title">Weighted blanket hug</div>
+      <div class="grounding-card-body">Wrap your arms around yourself and squeeze for about 20 seconds. Deep pressure touch releases oxytocin, the calming hormone.</div>
+    </div>
+
+    <div class="grounding-card">
+      <div class="grounding-card-title">Hand over heart</div>
+      <div class="grounding-card-body">Place one or both hands over your heart. Feel your own warmth. Breathe slowly. You can silently say something kind to yourself — whatever comes. There's no script required.</div>
+    </div>
+
+    <div class="grounding-card">
+      <div class="grounding-card-title">Hot cocoa breath</div>
+      <div class="grounding-card-body">Inhale deeply through your nose, imagining the smell of something warm and comforting. Exhale slowly through slightly pursed lips — like blowing on something hot to cool it. Repeat 3–5 times.</div>
+    </div>
+
+    <div class="grounding-card">
+      <div class="grounding-card-title">Tactile awareness</div>
+      <div class="grounding-card-body">Slowly describe 3 textures you can touch right now. Say the words out loud if you can.</div>
+    </div>
+
+    <p style="font-size:12px;color:var(--gray-400);font-style:italic;margin-top:0.5rem;line-height:1.6;">No single technique works for everyone every time. Try a few and notice which one lands best for you.</p>
+
+    <button class="modal-close" onclick="closeGroundingModalDirect()">Close</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── PROMPT DATA ──
+const WEEKS = [
+  {
+    theme: "Inner critic awareness",
+    prompts: [
+      {
+        text: "Write down 3 phrases your inner critic said today. No judgment — just observation. What does its voice sound like? Where do you notice it most?",
+        note: "Remember: this is not about fixing anything. The goal is to notice, and start creating a tiny pause."
+      },
+      {
+        text: "When the inner critic speaks up, where do you feel it in your body?",
+        note: "Physical sensations — chest tightness, a knot in the stomach, shallow breathing — are normal. Try to describe the sensation with curiosity: What shape does it have? Where exactly does it sit? Does it move?"
+      },
+      {
+        text: "Think about a recurring pattern in your inner critic. When does it tend to show up most (before tests, social situations, certain kinds of interactions)? Focus on noticing, not judging.",
+        note: null
+      },
+      {
+        text: "Did any of today's inner critic thoughts relate to grief — missing something or someone, or blaming yourself for something connected to a loss? How would a compassionate friend respond to those thoughts?",
+        note: null
+      },
+      {
+        text: "Think of something you don't understand well and get genuinely curious about it. What questions would a beginner ask? What would it feel like to approach your inner critic with that same beginner's curiosity?",
+        note: null
+      }
+    ]
+  },
+  {
+    theme: "Growth mindset",
+    prompts: [
+      {
+        text: "What's a skill or quality you used to believe was fixed about yourself (\"I'm just not good at...\") that you've since seen change, even slightly? What made the difference?",
+        note: null
+      },
+      {
+        text: "Where in your life are you operating from a fixed mindset right now (\"I'll never be good at this\")? What would a growth mindset version of that belief sound like?",
+        note: null
+      },
+      {
+        text: "Notice a moment today where you avoided something because you were afraid of failing at it. What's the smallest possible version of trying that thing — just enough to gather information, not to succeed?",
+        note: null
+      },
+      {
+        text: "What's a goofy habit or defense mechanism you've developed in the past to protect yourself from failure? Does it still serve you well now, or has it become a limitation?",
+        note: null
+      },
+      {
+        text: "Write about a time the inner critic tried to convince you that a struggle was proof you'd never improve. What actually happened over time?",
+        note: null
+      }
+    ]
+  },
+  {
+    theme: "Emotional & interoception awareness",
+    prompts: [
+      {
+        text: "Pick one emotion you felt today and try to describe it with as much physical detail as possible. Location, intensity, texture, temperature — whatever comes.",
+        note: "Body sensations during emotional moments (heaviness, tightness, shakiness, a racing heart) are a completely normal part of how emotions work. They're not a sign that you're losing control. They're information."
+      },
+      {
+        text: "Think of a time you misread a physical sensation as something negative (e.g., read normal adrenaline as anxiety, or excitement as danger). What was actually happening? Try renaming it more precisely.",
+        note: null
+      },
+      {
+        text: "What emotion did you feel most strongly today? Now try to get more specific: Was it sadness or disappointment? Frustration or helplessness? Anxiety or anticipation? The more precisely you can name it, the more manageable it tends to become.",
+        note: null
+      },
+      {
+        text: "Where do you feel grief in your body, on days when it's present? Can you describe it — a color, a texture, a weight?",
+        note: "Grief often lives in the chest (heaviness), throat (tightness), or stomach (hollowness). There's no right answer. Just notice."
+      },
+      {
+        text: "Notice a moment today when your body gave you information before your mind caught up. What was the signal? What was it telling you?",
+        note: null
+      }
+    ]
+  },
+  {
+    theme: "Controllables + testing assumptions",
+    prompts: [
+      {
+        text: "When you feel anxious or overwhelmed today, write down two columns: What I can control and What I can't. Then take one small action in the first column.",
+        note: null
+      },
+      {
+        text: "Think of a time you feared failure and things turned out okay — or at least differently than you feared. What does that tell you about how reliable your fear-predictions are?",
+        note: null
+      },
+      {
+        text: "What's a cognitive distortion you notice in yourself regularly (catastrophizing, mind-reading, all-or-nothing thinking)? Write down one piece of evidence that contradicts it.",
+        note: null
+      },
+      {
+        text: "Write about a situation where you felt completely out of control. Looking back: was there anything, even small, that you could have influenced? What would it have looked like to take that action?",
+        note: null
+      },
+      {
+        text: "Set up a small behavioral experiment: predict how a social interaction or situation will go (e.g., \"they'll be annoyed if I ask for help\"), then do it anyway and record what actually happened.",
+        note: null
+      }
+    ]
+  },
+  {
+    theme: "Patterns",
+    prompts: [
+      {
+        text: "What patterns do you notice in when and where the inner critic shows up most loudly? (Tests? Social situations? Certain relationships? After particular kinds of conversations?)",
+        note: null
+      },
+      {
+        text: "Write down a negative belief you hold about yourself. Now go on an \"exception hunt\" — write down 3 pieces of evidence that contradict it. They don't have to be big.",
+        note: null
+      },
+      {
+        text: "What story did your brain tell you today about a situation? (E.g., \"she didn't text back because she's angry at me.\") What's an alternative explanation that fits the same facts?",
+        note: null
+      },
+      {
+        text: "What does your inner critic do after you experience a loss or setback? Notice the pattern without judgment. Is there a predictable sequence of thoughts?",
+        note: null
+      },
+      {
+        text: "\"I choose my effort even when I can't choose the outcome.\" Write about what that would look like in one area of your life right now.",
+        note: null
+      }
+    ]
+  },
+  {
+    theme: "Self-compassion",
+    prompts: [
+      {
+        text: "Imagine a friend coming to you with the exact struggle you're currently in. What would you say to them? Now say it to yourself.",
+        note: null
+      },
+      {
+        text: "Write about a failure or mistake from this week. Then write about it again — this time the way you'd respond to a close friend who made the same mistake.",
+        note: null
+      },
+      {
+        text: "Where do you have the highest standards for yourself? Are those standards helping you or exhausting you right now? What would \"good enough\" look like in that area?",
+        note: null
+      },
+      {
+        text: "Think of a moment recently when you stayed calm under difficult circumstances. What made that possible? Take a moment to actually appreciate that about yourself.",
+        note: null
+      },
+      {
+        text: "Write down 3 things you genuinely appreciate about who you are — not achievements, but qualities. Notice how it feels to write them.",
+        note: null
+      }
+    ]
+  },
+  {
+    theme: "Authenticity & process goals",
+    prompts: [
+      {
+        text: "Write down a goal you're currently pursuing. Is it a \"should\" goal (external pressure) or a \"want\" goal (internal desire)? What's the difference in how each feels in your body when you think about it?",
+        note: null
+      },
+      {
+        text: "Pick one ongoing commitment in your life. Rewrite it as a process goal (specific, behavior-based, in your control) rather than an outcome goal.",
+        note: null
+      },
+      {
+        text: "What values feel most like you right now — not the you you're supposed to be, but the you that shows up when no one is watching? Write about one of them.",
+        note: null
+      },
+      {
+        text: "What part of yourself do you tend to hide from most people? What would it cost you to let that part be seen — and what might you gain?",
+        note: null
+      },
+      {
+        text: "Write about one small way you've been more authentic this week than you might have been a few months ago. It doesn't have to be dramatic.",
+        note: null
+      }
+    ]
+  },
+  {
+    theme: "Integration & deliberate practice",
+    prompts: [
+      {
+        text: "Look back at your very first journal entry. What's one thing that's shifted — even slightly — in how you talk to yourself?",
+        note: null
+      },
+      {
+        text: "What's a practice from these 8 weeks you want to keep? Write it as a specific, concrete commitment (not \"be kinder to myself\" but \"when the inner critic shows up, I'll pause and label the thought before reacting\").",
+        note: null
+      },
+      {
+        text: "Write about a moment this month where you responded to yourself with more compassion than you would have 8 weeks ago. What made the difference?",
+        note: null
+      },
+      {
+        text: "What do you want to be true about how you treat yourself one year from now? Write a brief letter from that future self to today's self.",
+        note: null
+      },
+      {
+        text: "What's one single-tasking practice you can build into your daily routine — a time to give your attention to just one thing? Write about what that would look and feel like.",
+        note: null
+      }
+    ]
+  }
+];
+
+// ── UTILITIES ──
+function hashStr(s) {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) { h = (Math.imul(31, h) + s.charCodeAt(i)) | 0; }
+  return Math.abs(h).toString(16);
+}
+function uKey(email) { return 'mj_u_' + hashStr(email.toLowerCase()); }
+function eKey(email) { return 'mj_e_' + hashStr(email.toLowerCase()); }
+function getUsers() { try { return JSON.parse(localStorage.getItem('mj_users')||'{}'); } catch { return {}; } }
+function saveUsers(u) { localStorage.setItem('mj_users', JSON.stringify(u)); }
+function getCurrent() { try { return JSON.parse(localStorage.getItem('mj_cur')||'null'); } catch { return null; } }
+function setCurrent(u) { localStorage.setItem('mj_cur', JSON.stringify(u)); }
+function getEntries(email) { try { return JSON.parse(localStorage.getItem(eKey(email))||'{}'); } catch { return {}; } }
+function setEntries(email, e) { localStorage.setItem(eKey(email), JSON.stringify(e)); }
+
+function todayStr() {
+  const d = new Date();
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
+function formatLong(ds) {
+  const [y,m,d] = ds.split('-').map(Number);
+  return new Date(y,m-1,d).toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+}
+function formatShort(ds) {
+  const [y,m,d] = ds.split('-').map(Number);
+  return new Date(y,m-1,d).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+}
+
+// Get prompt for a given date based on day-of-program (uses join date if available)
+function getPromptForDate(ds, joinDate) {
+  const [y,m,d] = ds.split('-').map(Number);
+  const [jy,jm,jd] = (joinDate||ds).split('-').map(Number);
+  const dayNum = Math.floor((new Date(y,m-1,d) - new Date(jy,jm-1,jd)) / 86400000);
+  const weekIdx = Math.min(Math.floor(dayNum / 7), WEEKS.length - 1);
+  const dayIdx = Math.min(dayNum % 5, 4); // 5 prompts per week, cycle within week
+  const week = WEEKS[weekIdx >= 0 ? weekIdx : 0];
+  const prompt = week.prompts[dayIdx >= 0 ? dayIdx : 0];
+  return { weekNum: weekIdx + 1, weekTheme: week.theme, prompt, dayNum: dayNum + 1 };
+}
+
+// ── AUTH ──
+function showSignup() {
+  document.getElementById('auth-choice').style.display = 'none';
+  document.getElementById('login-card').style.display = 'none';
+  document.getElementById('signup-card').style.display = 'block';
+}
+function showLogin() {
+  document.getElementById('auth-choice').style.display = 'none';
+  document.getElementById('signup-card').style.display = 'none';
+  document.getElementById('login-card').style.display = 'block';
+}
+function showAuthChoice() {
+  document.getElementById('signup-card').style.display = 'none';
+  document.getElementById('login-card').style.display = 'none';
+  document.getElementById('auth-choice').style.display = 'flex';
+}
+
+function doSignup() {
+  const name = document.getElementById('signup-name').value.trim();
+  const email = document.getElementById('signup-email').value.trim().toLowerCase();
+  const pw = document.getElementById('signup-pw').value;
+  const err = document.getElementById('signup-error');
+  err.style.display = 'none';
+  if (!name) { err.textContent = 'Please enter your name.'; err.style.display = 'block'; return; }
+  if (!email.includes('@')) { err.textContent = 'Please enter a valid email.'; err.style.display = 'block'; return; }
+  if (pw.length < 6) { err.textContent = 'Password must be at least 6 characters.'; err.style.display = 'block'; return; }
+  const users = getUsers();
+  const key = uKey(email);
+  if (users[key]) { err.textContent = 'An account already exists for that email.'; err.style.display = 'block'; return; }
+  users[key] = { name, email, pw: hashStr(pw+email), joined: todayStr() };
+  saveUsers(users);
+  setCurrent({ name, email, joined: todayStr() });
+  enterApp({ name, email, joined: todayStr() });
+}
+
+function doLogin() {
+  const email = document.getElementById('login-email').value.trim().toLowerCase();
+  const pw = document.getElementById('login-pw').value;
+  const err = document.getElementById('login-error');
+  err.style.display = 'none';
+  if (!email || !pw) { err.textContent = 'Please fill in both fields.'; err.style.display = 'block'; return; }
+  const users = getUsers();
+  const key = uKey(email);
+  const user = users[key];
+  if (!user) { err.textContent = 'No account found. Please sign up first.'; err.style.display = 'block'; return; }
+  if (user.pw !== hashStr(pw+email)) { err.textContent = 'Incorrect password.'; err.style.display = 'block'; return; }
+  const u = { name: user.name, email: user.email, joined: user.joined };
+  setCurrent(u);
+  enterApp(u);
+}
+
+function doLogout() {
+  setCurrent(null);
+  document.getElementById('app-screen').style.display = 'none';
+  document.getElementById('auth-screen').style.display = 'flex';
+}
+
+function enterApp(user) {
+  document.getElementById('auth-screen').style.display = 'none';
+  document.getElementById('app-screen').style.display = 'block';
+  document.getElementById('header-user').textContent = user.name;
+  loadTodayTab(user);
+}
+
+// ── TODAY ──
+function loadTodayTab(user) {
+  const today = todayStr();
+  const [y,m,d] = today.split('-').map(Number);
+  document.getElementById('today-date-label').textContent =
+    new Date(y,m-1,d).toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
+
+  const entries = getEntries(user.email);
+  const streak = calcStreak(entries);
+  document.getElementById('streak-count').textContent = streak.current;
+  document.getElementById('best-streak').textContent = streak.best;
+
+  const info = getPromptForDate(today, user.joined);
+  const el = document.getElementById('today-content');
+
+  if (entries[today]) {
+    el.innerHTML = `
+      <div class="week-theme-card">
+        <div class="week-theme-label">Week ${info.weekNum} — Day ${(info.dayNum - 1) % 5 + 1}</div>
+        <div class="week-theme-name">${info.weekTheme}</div>
+      </div>
+      <div class="already-journaled">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink:0;margin-top:1px;">
+          <circle cx="10" cy="10" r="9" stroke="var(--teal-400)" stroke-width="1.5"/>
+          <path d="M6 10L9 13L14 8" stroke="var(--teal-400)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <p><strong>You journaled today.</strong> Your entry is saved.</p>
+          <button class="view-entry-btn" onclick="viewTodayEntry()">View today's entry</button>
+        </div>
+      </div>
+    `;
+  } else {
+    const noteHtml = info.prompt.note
+      ? `<div class="prompt-note">${info.prompt.note}</div>` : '';
+    el.innerHTML = `
+      <div class="week-theme-card">
+        <div class="week-theme-label">Week ${info.weekNum} — Day ${(info.dayNum - 1) % 5 + 1}</div>
+        <div class="week-theme-name">${info.weekTheme}</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-week-tag">Week ${info.weekNum} prompt</div>
+        <div class="prompt-text">${info.prompt.text}</div>
+        ${noteHtml}
+        <textarea class="prompt-textarea" id="journal-answer" placeholder="Write your thoughts here…"></textarea>
+      </div>
+      <p class="skip-note">Some days, "not today" is enough. That counts too.</p>
+      <button class="save-btn" onclick="saveEntry()">Save today's entry</button>
+    `;
+  }
+}
+
+function saveEntry() {
+  const user = getCurrent();
+  if (!user) return;
+  const today = todayStr();
+  const answer = (document.getElementById('journal-answer')||{value:''}).value.trim();
+  const info = getPromptForDate(today, user.joined);
+  const entries = getEntries(user.email);
+  entries[today] = {
+    date: today,
+    weekNum: info.weekNum,
+    weekTheme: info.weekTheme,
+    prompt: info.prompt.text,
+    answer,
+    savedAt: new Date().toISOString()
+  };
+  setEntries(user.email, entries);
+  showToast('Entry saved!');
+  loadTodayTab(user);
+  const s = calcStreak(entries);
+  document.getElementById('streak-count').textContent = s.current;
+  document.getElementById('best-streak').textContent = s.best;
+  loadProgressData(user.email);
+}
+
+function viewTodayEntry() {
+  const user = getCurrent(); if (!user) return;
+  const entries = getEntries(user.email);
+  openEntryModal(entries[todayStr()]);
+}
+
+// ── STREAK ──
+function calcStreak(entries) {
+  const keys = Object.keys(entries).sort().reverse();
+  if (!keys.length) return { current: 0, best: 0 };
+  const today = todayStr();
+  let current = 0;
+  const todayHas = entries[today];
+  const yest = (() => { const d=new Date(); d.setDate(d.getDate()-1); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); })();
+  const start = todayHas ? today : (entries[yest] ? yest : null);
+  if (start) {
+    let check = new Date(start+'T12:00:00');
+    while (true) {
+      const s = check.getFullYear()+'-'+String(check.getMonth()+1).padStart(2,'0')+'-'+String(check.getDate()).padStart(2,'0');
+      if (entries[s]) { current++; check.setDate(check.getDate()-1); } else break;
+    }
+  }
+  let best = 0, run = 0, prev = null;
+  [...keys].reverse().forEach(k => {
+    if (!prev) { run = 1; }
+    else {
+      const diff = (new Date(k+'T12:00:00') - new Date(prev+'T12:00:00')) / 86400000;
+      run = diff === 1 ? run + 1 : 1;
+    }
+    best = Math.max(best, run);
+    prev = k;
+  });
+  return { current, best: Math.max(best, current) };
+}
+
+// ── HISTORY ──
+function loadHistoryTab(email) {
+  const entries = getEntries(email);
+  const keys = Object.keys(entries).sort().reverse();
+  const list = document.getElementById('history-list');
+  if (!keys.length) {
+    list.innerHTML = `<div class="empty-state"><p>No entries yet.<br>Start your first journal entry today!</p></div>`;
+    return;
+  }
+  list.innerHTML = '';
+  keys.forEach(ds => {
+    const e = entries[ds];
+    const card = document.createElement('div');
+    card.className = 'entry-card';
+    card.innerHTML = `
+      <div class="entry-date-label">${formatLong(ds)}</div>
+      <div class="entry-theme">Week ${e.weekNum} — ${e.weekTheme}</div>
+      <div class="entry-preview">${e.answer || '<em style="color:var(--gray-400)">No text recorded</em>'}</div>
+    `;
+    card.onclick = () => openEntryModal(e);
+    list.appendChild(card);
+  });
+}
+
+// ── PROGRESS ──
+function loadProgressData(email) {
+  const entries = getEntries(email);
+  const keys = Object.keys(entries);
+  const streak = calcStreak(entries);
+  document.getElementById('stat-total').textContent = keys.length;
+  document.getElementById('stat-streak').textContent = streak.current;
+  document.getElementById('stat-best').textContent = streak.best;
+  const now = new Date();
+  const prefix = now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');
+  document.getElementById('stat-thismonth').textContent = keys.filter(k=>k.startsWith(prefix)).length;
+  buildWeekView(entries);
+  buildCalendar(entries);
+}
+
+function buildWeekView(entries) {
+  const today = todayStr();
+  const c = document.getElementById('week-days');
+  c.innerHTML = '';
+  const now = new Date();
+  const startOfWeek = new Date(now);
+  startOfWeek.setDate(now.getDate() - now.getDay());
+  ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach((name,i) => {
+    const dd = new Date(startOfWeek); dd.setDate(startOfWeek.getDate()+i);
+    const ds = dd.getFullYear()+'-'+String(dd.getMonth()+1).padStart(2,'0')+'-'+String(dd.getDate()).padStart(2,'0');
+    const done = !!entries[ds];
+    const isToday = ds === today;
+    const div = document.createElement('div');
+    div.className = 'week-day';
+    div.innerHTML = `
+      <div class="week-day-name">${name}</div>
+      <div class="week-dot ${done?'done':''} ${isToday&&!done?'today-empty':''}">
+        ${done?`<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7L6 10L11 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`:''}
+      </div>
+    `;
+    c.appendChild(div);
+  });
+}
+
+function buildCalendar(entries) {
+  const today = todayStr();
+  const now = new Date();
+  const y = now.getFullYear(), m = now.getMonth();
+  document.getElementById('cal-title').textContent =
+    now.toLocaleDateString('en-US',{month:'long',year:'numeric'});
+  const g = document.getElementById('cal-grid');
+  g.innerHTML = '';
+  ['S','M','T','W','T','F','S'].forEach(d => {
+    const el = document.createElement('div');
+    el.className = 'cal-day-name'; el.textContent = d; g.appendChild(el);
+  });
+  const firstDay = new Date(y,m,1).getDay();
+  const daysInMonth = new Date(y,m+1,0).getDate();
+  for (let i=0;i<firstDay;i++) {
+    const el = document.createElement('div'); el.className='cal-day'; g.appendChild(el);
+  }
+  for (let day=1;day<=daysInMonth;day++) {
+    const ds = y+'-'+String(m+1).padStart(2,'0')+'-'+String(day).padStart(2,'0');
+    const el = document.createElement('div');
+    el.className='cal-day'+(entries[ds]?' has-entry':'')+(ds===today?' today':'');
+    el.textContent = day;
+    g.appendChild(el);
+  }
+}
+
+// ── ENTRY MODAL ──
+function openEntryModal(e) {
+  document.getElementById('modal-week-tag').innerHTML =
+    `<div class="modal-week-tag">Week ${e.weekNum} — ${e.weekTheme}</div>`;
+  document.getElementById('modal-date').textContent = formatLong(e.date);
+  document.getElementById('modal-content').innerHTML = `
+    <div class="modal-q">Prompt</div>
+    <div class="modal-prompt-text">${e.prompt}</div>
+    <div class="modal-a">${e.answer||'<span style="color:var(--gray-400)">No text recorded</span>'}</div>
+  `;
+  document.getElementById('entry-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeEntryModal(ev) { if(ev.target===document.getElementById('entry-modal')) closeEntryModalDirect(); }
+function closeEntryModalDirect() {
+  document.getElementById('entry-modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+// ── GROUNDING MODAL ──
+function openGrounding() {
+  document.getElementById('grounding-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeGroundingModal(ev) { if(ev.target===document.getElementById('grounding-modal')) closeGroundingModalDirect(); }
+function closeGroundingModalDirect() {
+  document.getElementById('grounding-modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+// ── TAB SWITCHING ──
+function switchTab(name, btn) {
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  const user = getCurrent(); if (!user) return;
+  if (name==='history') loadHistoryTab(user.email);
+  if (name==='progress') loadProgressData(user.email);
+}
+
+// ── TOAST ──
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2500);
+}
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', () => {
+  const user = getCurrent();
+  if (user) enterApp(user);
+  document.getElementById('login-pw').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
+});
+</script>
+</body>
+</html>
