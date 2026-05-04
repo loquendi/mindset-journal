@@ -232,6 +232,29 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .grounding-item-body{font-size:13px;color:var(--g600);line-height:1.65;}
 .grounding-item-body li{margin-left:1rem;margin-bottom:2px;}
 
+/* ── CRITIC NAME MODAL ── */
+#critic-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:200;align-items:center;justify-content:center;padding:1.5rem;}
+#critic-modal.open{display:flex;}
+.critic-sheet{background:white;border-radius:20px;width:100%;max-width:420px;padding:1.75rem 1.5rem 1.5rem;}
+.critic-sheet h2{font-size:18px;font-weight:600;color:var(--g900);margin-bottom:8px;line-height:1.3;}
+.critic-sheet p{font-size:13px;color:var(--g600);line-height:1.65;margin-bottom:0.625rem;}
+.critic-examples{font-size:12px;color:var(--g400);font-style:italic;margin-bottom:1.125rem;line-height:1.6;}
+.critic-input{width:100%;padding:10px 12px;border:0.5px solid var(--g200);border-radius:10px;font-size:15px;color:var(--g900);background:white;outline:none;font-family:inherit;-webkit-appearance:none;box-sizing:border-box;margin-bottom:0.75rem;}
+.critic-input:focus{border-color:var(--p400);box-shadow:0 0 0 3px var(--p50);}
+.critic-save-btn{width:100%;padding:13px;background:var(--p600);color:white;border:none;border-radius:10px;font-size:15px;font-weight:500;cursor:pointer;font-family:inherit;margin-bottom:0.625rem;}
+.critic-save-btn:hover{background:var(--p800);}
+.critic-skip{display:block;text-align:center;font-size:13px;color:var(--g400);}
+.critic-skip button{background:none;border:none;color:var(--g400);font-size:13px;cursor:pointer;text-decoration:underline;font-family:inherit;}
+/* settings card in library */
+.settings-input-row{display:flex;gap:8px;align-items:center;margin-top:0.875rem;}
+.settings-input{flex:1;padding:9px 12px;border:0.5px solid var(--g200);border-radius:10px;font-size:14px;color:var(--g900);background:white;outline:none;font-family:inherit;-webkit-appearance:none;}
+.settings-input:focus{border-color:var(--p400);box-shadow:0 0 0 3px var(--p50);}
+.settings-save-btn{padding:9px 16px;background:var(--p600);color:white;border:none;border-radius:10px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;white-space:nowrap;}
+.settings-save-btn:hover{background:var(--p800);}
+.settings-clear-btn{padding:9px 14px;background:transparent;color:var(--g400);border:0.5px solid var(--g200);border-radius:10px;font-size:14px;cursor:pointer;font-family:inherit;white-space:nowrap;}
+.settings-current{font-size:13px;color:var(--g600);margin-top:0.5rem;}
+.settings-current strong{color:var(--p600);}
+
 /* ── CELEBRATION MODAL ── */
 #celebrate-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:200;align-items:flex-end;justify-content:center;}
 #celebrate-modal.open{display:flex;}
@@ -357,6 +380,21 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="celebrate-title" id="cel-title"></div>
     <div class="celebrate-body" id="cel-body"></div>
     <button class="celebrate-btn" onclick="closeCelebrateDirect()">Keep going</button>
+  </div>
+</div>
+
+<!-- CRITIC NAME MODAL -->
+<div id="critic-modal">
+  <div class="critic-sheet">
+    <h2>Give your inner critic a name</h2>
+    <p>Research in ACT therapy shows that naming your inner critic creates psychological distance — making it easier to notice without automatically believing it.</p>
+    <p>A silly or funny name is especially effective. Something absurd makes it harder to take the voice too seriously.</p>
+    <div class="critic-examples">e.g. Regina George, Eeyore, Gollum, Lord Voldemort, Squidward…</div>
+    <input class="critic-input" type="text" id="critic-name-input" placeholder="My inner critic's name…" maxlength="40">
+    <button class="critic-save-btn" onclick="saveCriticName()">Save</button>
+    <div class="critic-skip">
+      <button onclick="skipCriticName()">Skip for now — I can always add one later in Settings</button>
+    </div>
   </div>
 </div>
 
@@ -534,6 +572,11 @@ function loadTodayTab(user){
   const readingDone=!!readings[readingKey];
   const isFirstDay=today===user.joined;
   const todayIsRestDay=isRestDay(today,user.joined);
+  const criticName=getCriticName(user.email);
+  // Show critic name modal on day 2 of week 1 (dayNum===1) if not yet set/dismissed
+  if(info.dayNum===1&&!criticName&&!dismissed.includes('critic-modal')){
+    setTimeout(()=>openCriticModal(),600);
+  }
   const dismissed=getDismissed(user.email);
 
   const[y,m,d]=today.split('-').map(Number);
@@ -617,11 +660,12 @@ function loadTodayTab(user){
       <div><p><strong>You journaled today.</strong> Entry saved.</p><button class="view-btn" onclick="viewTodayEntry()">View today's entry</button></div>
     </div>`;
   }else{
+    const promptText=applyCriticName(info.prompt.text,criticName);
     const noteHtml=info.prompt.note?`<div class="prompt-note">${info.prompt.note}</div>`:'';
     html+=`<div class="prompt-card">
       <div class="prompt-card-top">
         <div class="prompt-tag">Week ${info.weekNum} — Day ${info.dayInWeek+1}</div>
-        <div class="prompt-text">${info.prompt.text}</div>${noteHtml}
+        <div class="prompt-text">${promptText}</div>${noteHtml}
       </div>
       <textarea class="prompt-textarea" id="journal-answer" placeholder="Write your thoughts here…"></textarea>
     </div>
@@ -920,6 +964,8 @@ function buildCalendar(entries,readings,joinDate){
 
 // ══ LIBRARY ══
 function buildLibrary(){
+  const user=getCur();
+  const criticName=user?getCriticName(user.email):null;
   const html=`
   <div class="library-section">
     <div class="lib-section-title">Getting started</div>
@@ -993,6 +1039,28 @@ function buildLibrary(){
         <div style="margin-left:auto;color:var(--g400);font-size:18px;">↗</div>
       </div>
     </div>
+  </div>
+  <div class="library-section">
+    <div class="lib-section-title">Settings</div>
+    <div class="lib-card" onclick="toggleLib('settings')">
+      <div class="lib-card-header">
+        <div class="lib-card-icon" style="background:linear-gradient(135deg,var(--k600),var(--k400));"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3a1 1 0 011 1v.5a5.5 5.5 0 012.4 1l.35-.35a1 1 0 111.41 1.41l-.35.35A5.5 5.5 0 0116 9h.5a1 1 0 110 2H16a5.5 5.5 0 01-1 2.4l.35.35a1 1 0 11-1.41 1.41l-.35-.35A5.5 5.5 0 0111 16.5v.5a1 1 0 11-2 0v-.5a5.5 5.5 0 01-2.4-1l-.35.35a1 1 0 11-1.41-1.41l.35-.35A5.5 5.5 0 014 11H3.5a1 1 0 110-2H4a5.5 5.5 0 011-2.4l-.35-.35a1 1 0 111.41-1.41l.35.35A5.5 5.5 0 019 3.5V4a1 1 0 011-1zm0 4a3 3 0 100 6 3 3 0 000-6z" fill="white"/></svg></div>
+        <div><div class="lib-card-name">Settings</div><div class="lib-card-desc">Inner critic name & preferences</div></div>
+        <div class="lib-card-chevron" id="chev-settings">›</div>
+      </div>
+      <div class="lib-card-body" id="lib-settings">
+        <div class="lib-content">
+          <p style="font-size:14px;font-weight:600;color:var(--g900);margin-bottom:4px;">Inner critic name</p>
+          <p style="font-size:13px;color:var(--g600);line-height:1.6;margin-bottom:0;">Naming your inner critic creates psychological distance — making it easier to notice without automatically believing it. Silly names work especially well.<br><span style="font-style:italic;color:var(--g400);">e.g. Regina George, Eeyore, Gollum, Lord Voldemort, Squidward…</span></p>
+          <div class="settings-input-row">
+            <input class="settings-input" type="text" id="settings-critic-input" placeholder="${criticName||'Give it a name…'}" maxlength="40" value="${criticName||''}">
+            <button class="settings-save-btn" onclick="saveCriticNameFromSettings();event.stopPropagation()">Save</button>
+            ${criticName?`<button class="settings-clear-btn" onclick="document.getElementById('settings-critic-input').value='';saveCriticNameFromSettings();event.stopPropagation()">Clear</button>`:''}
+          </div>
+          <div class="settings-current" id="settings-critic-current">${criticName?`Currently: <strong>${criticName}</strong>`:'No name set.'}</div>
+        </div>
+      </div>
+    </div>
   </div>`;
   document.getElementById('library-content').innerHTML=html;
 }
@@ -1031,6 +1099,66 @@ function dismissBanner(key){
   const el=document.getElementById('intro-banner');
   if(el)el.remove();
 }
+// ══ CRITIC NAME ══
+function getCriticName(email){
+  const users=getUsers();
+  const user=users[uKey(email)];
+  return user&&user.criticName?user.criticName:null;
+}
+function setCriticName(email,name){
+  const users=getUsers();
+  const key=uKey(email);
+  if(users[key]){users[key].criticName=name;saveUsers(users);}
+  // Also update mj_cur
+  const cur=getCur();
+  if(cur&&cur.email===email){cur.criticName=name;setCur(cur);}
+}
+
+// Replace "inner critic" in prompt text with the critic's name,
+// handling common modifiers: "your inner critic", "the inner critic", "inner critic"
+function applyCriticName(text, name){
+  if(!name)return text;
+  // Order matters: most specific first
+  return text
+    .replace(/\byour inner critic\b/gi, name)
+    .replace(/\bthe inner critic\b/gi, name)
+    .replace(/\binner critic\b/gi, name);
+}
+
+function openCriticModal(){
+  document.getElementById('critic-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+  setTimeout(()=>document.getElementById('critic-name-input').focus(),100);
+}
+function closeCriticModal(){
+  document.getElementById('critic-modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+function saveCriticName(){
+  const user=getCur();if(!user)return;
+  const name=document.getElementById('critic-name-input').value.trim();
+  if(!name)return;
+  setCriticName(user.email,name);
+  addDismissed(user.email,'critic-modal');
+  closeCriticModal();
+  loadTodayTab(user); // refresh prompts with new name
+}
+function skipCriticName(){
+  const user=getCur();if(!user)return;
+  addDismissed(user.email,'critic-modal');
+  closeCriticModal();
+}
+function saveCriticNameFromSettings(){
+  const user=getCur();if(!user)return;
+  const name=document.getElementById('settings-critic-input').value.trim();
+  setCriticName(user.email,name||null);
+  // Update display
+  const cur=document.getElementById('settings-critic-current');
+  if(cur)cur.innerHTML=name?`Currently: <strong>${name}</strong>`:'No name set.';
+  loadTodayTab(user);
+  showToast(name?`Inner critic renamed to "${name}"`:'Name cleared.');
+}
+
 function dismissAlarmForever(){
   const user=getCur();if(!user)return;
   addDismissed(user.email,'alarm');
@@ -1091,6 +1219,7 @@ function switchTab(name,btn){
   const user=getCur();if(!user)return;
   if(name==='history')loadHistoryTab(user.email);
   if(name==='progress')loadProgressTab(user.email,user.joined);
+  if(name==='library')buildLibrary();
 }
 
 // ══ TOAST ══
