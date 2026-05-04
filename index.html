@@ -59,6 +59,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .intro-banner-body a{color:var(--p600);font-weight:500;text-decoration:underline;cursor:pointer;}
 .intro-dismiss{position:absolute;top:10px;right:12px;background:none;border:none;font-size:18px;color:var(--p400);cursor:pointer;line-height:1;padding:0;}
 
+/* ── ALARM BANNER ── */
+.alarm-banner{background:var(--a50);border:0.5px solid var(--a100);border-radius:14px;padding:1rem 1.125rem;margin-bottom:1.25rem;}
+.alarm-banner-title{font-size:14px;font-weight:600;color:var(--a600);margin-bottom:4px;display:flex;align-items:center;gap:6px;}
+.alarm-banner-body{font-size:13px;color:var(--g700,#4a4947);line-height:1.6;margin-bottom:0.875rem;}
+.alarm-banner-btns{display:flex;gap:8px;flex-wrap:wrap;}
+.alarm-btn-set{padding:8px 14px;background:var(--a600);color:white;border:none;border-radius:20px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;}
+.alarm-btn-set:hover{background:var(--a400);}
+.alarm-btn-later{padding:8px 14px;background:transparent;color:var(--a600);border:0.5px solid var(--a400);border-radius:20px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;}
+.alarm-btn-later:hover{background:var(--a50);}
+
 /* ── TODAY HERO ── */
 .today-hero{border-radius:16px;padding:1.5rem;margin-bottom:1.25rem;background:linear-gradient(135deg,#534AB7 0%,#7F77DD 40%,#1D9E75 80%,#9FE1CB 100%);}
 .today-hero-date{font-size:13px;font-weight:500;color:rgba(255,255,255,0.8);margin-bottom:4px;}
@@ -548,6 +558,20 @@ function loadTodayTab(user){
     </div>`;
   }
 
+  // Alarm reminder banner — show unless permanently dismissed or snoozed today
+  const alarmSet=dismissed.includes('alarm');
+  const snoozedToday=dismissed.includes('alarm-snooze-'+today);
+  if(!alarmSet&&!snoozedToday&&!isFirstDay){
+    html+=`<div class="alarm-banner" id="alarm-banner">
+      <div class="alarm-banner-title">⏰ Set a daily reminder</div>
+      <div class="alarm-banner-body">The most effective journaling habit is a consistent time. Try setting a daily alarm — even 5 minutes is enough.</div>
+      <div class="alarm-banner-btns">
+        <button class="alarm-btn-set" onclick="dismissAlarmForever()">My alarm is set!</button>
+        <button class="alarm-btn-later" onclick="snoozeAlarm()">Remind me tomorrow</button>
+      </div>
+    </div>`;
+  }
+
   // Reading card — show on day 1 of each week, or if not yet done this week
   if(isDay1OfWeek||!readingDone){
     const bodyId='reading-body-'+info.weekNum;
@@ -948,6 +972,19 @@ function dismissBanner(key){
   const el=document.getElementById('intro-banner');
   if(el)el.remove();
 }
+function dismissAlarmForever(){
+  const user=getCur();if(!user)return;
+  addDismissed(user.email,'alarm');
+  const el=document.getElementById('alarm-banner');
+  if(el)el.remove();
+}
+function snoozeAlarm(){
+  const user=getCur();if(!user)return;
+  addDismissed(user.email,'alarm-snooze-'+todayStr());
+  const el=document.getElementById('alarm-banner');
+  if(el)el.remove();
+}
+
 function switchToLibrary(ev){
   if(ev)ev.preventDefault();
   const btn=document.querySelector('.nav-tab:nth-child(4)');
