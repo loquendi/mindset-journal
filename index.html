@@ -521,7 +521,7 @@ function loadTodayTab(user){
   const info=getProgInfo(today,user.joined);
   const entries=getEntries(user.email);
   const readings=getReadings(user.email);
-  const jS=calcDayStreak(entries);
+  const jS=calcDayStreak(entries,user.joined);
   const rS=calcReadingStreak(readings);
   const isDay1OfWeek=info.dayInWeek===0;
   const readingKey='w'+info.weekNum;
@@ -674,12 +674,12 @@ function saveEntry(){
   const answer=(document.getElementById('journal-answer')||{value:''}).value.trim();
   const info=getProgInfo(today,user.joined);
   const entries=getEntries(user.email);
-  const wasStreak=calcDayStreak(entries).current;
+  const wasStreak=calcDayStreak(entries,user.joined).current;
 
   entries[today]={date:today,weekNum:info.weekNum,weekTheme:info.weekTheme,prompt:info.prompt.text,answer,savedAt:new Date().toISOString()};
   setEntries(user.email,entries);
 
-  const newStreak=calcDayStreak(entries).current;
+  const newStreak=calcDayStreak(entries,user.joined).current;
 
   // Determine situation
   let situation='streak';
@@ -700,23 +700,68 @@ function viewTodayEntry(){
 }
 
 // ══ STREAK CALCS ══
-// Daily journal streak — consecutive days
-function calcDayStreak(entries){
+// Returns true if a given date string is a rest day (day 6 or 7 of the program week)
+function isRestDay(ds, joinDate){
+  const dayNum=Math.max(0,Math.floor((dateFromStr(ds)-dateFromStr(joinDate))/86400000));
+  return (dayNum%7)>=5;
+}
+
+// Returns true if the gap between two consecutive entry dates only spans rest days
+// i.e. no prompt days were missed between fromDs and toDs (exclusive)
+function gapIsOnlyRestDays(fromDs, toDs, joinDate){
+  let check=offsetDay(fromDs,1);
+  while(check<toDs){
+    if(!isRestDay(check,joinDate))return false;
+    check=offsetDay(check,1);
+  }
+  return true;
+}
+
+// Daily journal streak — consecutive prompt days (rest days don't break streak)
+function calcDayStreak(entries, joinDate){
   const dates=Object.keys(entries).sort();
   if(!dates.length)return{current:0,best:0};
+  const jd=joinDate||dates[0];
   const today=todayStr();
-  const yest=offsetDay(today,-1);
   const dateSet=new Set(dates);
+
+  // Walk back from today (or yesterday) counting entries, bridging rest-day gaps
   let current=0;
-  const startFrom=dateSet.has(today)?today:(dateSet.has(yest)?yest:null);
+  // Find the most recent entry date to start from (today or yesterday)
+  let startFrom=null;
+  if(dateSet.has(today))startFrom=today;
+  else{
+    // If today is a rest day, we can still have an active streak from last prompt day
+    const yest=offsetDay(today,-1);
+    if(dateSet.has(yest))startFrom=yest;
+    else if(isRestDay(today,jd)){
+      // Walk back through rest days to find last entry
+      let check=offsetDay(today,-1);
+      while(check>=jd&&isRestDay(check,jd)){check=offsetDay(check,-1);}
+      if(dateSet.has(check))startFrom=check;
+    }
+  }
+
   if(startFrom){
     let check=startFrom;
-    while(dateSet.has(check)){current++;check=offsetDay(check,-1);}
+    while(true){
+      if(dateSet.has(check)){current++;const prev=offsetDay(check,-1);check=prev;}
+      else if(isRestDay(check,jd)){check=offsetDay(check,-1);}
+      else break;
+      if(check<jd)break;
+    }
   }
+
+  // Best streak: walk through sorted dates, bridging rest-day gaps
   let best=0,run=0,prev=null;
   dates.forEach(k=>{
     if(!prev){run=1;}
-    else{const diff=(dateFromStr(k)-dateFromStr(prev))/86400000;run=diff===1?run+1:1;}
+    else{
+      const gap=Math.round((dateFromStr(k)-dateFromStr(prev))/86400000);
+      if(gap===1){run++;}
+      else if(gap>1&&gapIsOnlyRestDays(prev,k,jd)){run++;}
+      else{run=1;}
+    }
     best=Math.max(best,run);prev=k;
   });
   return{current,best:Math.max(best,current)};
@@ -798,7 +843,7 @@ function loadHistoryTab(email){
 function loadProgressTab(email,joinDate){
   const entries=getEntries(email);
   const readings=getReadings(email);
-  const jS=calcDayStreak(entries);
+  const jS=calcDayStreak(entries,joinDate);
   const rS=calcReadingStreak(readings);
   document.getElementById('st-total').textContent=Object.keys(entries).length;
   document.getElementById('st-j-streak').textContent=jS.current;
