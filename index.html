@@ -130,6 +130,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .already-done strong{color:var(--t800);font-weight:600;}
 .view-btn{background:none;border:none;color:var(--t600);font-size:13px;font-weight:500;cursor:pointer;text-decoration:underline;padding:0;margin-top:4px;display:block;font-family:inherit;}
 
+/* ── REST DAY ── */
+.rest-day-card{background:white;border-radius:14px;border:0.5px solid var(--g100);padding:1.5rem 1.25rem;margin-bottom:1rem;text-align:center;}
+.rest-day-icon{font-size:36px;margin-bottom:0.75rem;line-height:1;}
+.rest-day-title{font-size:17px;font-weight:600;color:var(--g900);margin-bottom:0.5rem;}
+.rest-day-body{font-size:14px;color:var(--g600);line-height:1.7;max-width:300px;margin:0 auto;}
+
 /* ── HISTORY ── */
 .section-hdr{font-size:12px;font-weight:600;color:var(--g400);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:0.875rem;}
 .entry-card{background:white;border-radius:14px;border:0.5px solid var(--g100);padding:1rem 1.25rem;margin-bottom:0.75rem;cursor:pointer;}
@@ -527,6 +533,7 @@ function loadTodayTab(user){
   const readingKey='w'+info.weekNum;
   const readingDone=!!readings[readingKey];
   const isFirstDay=today===user.joined;
+  const todayIsRestDay=isRestDay(today,user.joined);
   const dismissed=getDismissed(user.email);
 
   const[y,m,d]=today.split('-').map(Number);
@@ -572,8 +579,8 @@ function loadTodayTab(user){
     </div>`;
   }
 
-  // Reading card — show on day 1 of each week, or if not yet done this week
-  if(isDay1OfWeek||!readingDone){
+  // Reading card — show on day 1 of each week, or if not yet done this week (not on rest days)
+  if(!todayIsRestDay&&(isDay1OfWeek||!readingDone)){
     const bodyId='reading-body-'+info.weekNum;
     html+=`<div class="reading-card" id="reading-card-main">
       <div class="reading-card-header" onclick="toggleReadingCard()">
@@ -597,7 +604,14 @@ function loadTodayTab(user){
   }
 
   // Journal entry
-  if(entries[today]){
+  if(todayIsRestDay){
+    html+=`<div class="rest-day-card">
+      <div class="rest-day-icon">☁️</div>
+      <div class="rest-day-title">Rest day</div>
+      <div class="rest-day-body">No prompt today — this is intentional. The program builds in two rest days each week so the practice stays sustainable, not relentless.</div>
+      <div class="rest-day-body" style="margin-top:0.625rem;">Your streak is safe. Rest days are part of the program and don't count against you.</div>
+    </div>`;
+  }else if(entries[today]){
     html+=`<div class="already-done">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink:0;margin-top:1px;"><circle cx="10" cy="10" r="9" stroke="var(--t400)" stroke-width="1.5"/><path d="M6 10L9 13L14 8" stroke="var(--t400)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <div><p><strong>You journaled today.</strong> Entry saved.</p><button class="view-btn" onclick="viewTodayEntry()">View today's entry</button></div>
