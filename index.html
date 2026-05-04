@@ -17,17 +17,9 @@
 }
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--g50);color:var(--g900);min-height:100vh;max-width:480px;margin:0 auto;-webkit-text-size-adjust:100%;}
 
-/* ── OMBRE HEADER GRADIENTS ── */
-.grad-hero{background:linear-gradient(135deg,#534AB7 0%,#7F77DD 40%,#1D9E75 80%,#9FE1CB 100%);}
-.grad-reading{background:linear-gradient(135deg,#3C3489 0%,#534AB7 50%,#D4537E 100%);}
-.grad-progress{background:linear-gradient(135deg,#0F6E56 0%,#1D9E75 50%,#534AB7 100%);}
-.grad-library{background:linear-gradient(135deg,#854F0B 0%,#BA7517 50%,#534AB7 100%);}
-.grad-streak-fire{background:linear-gradient(135deg,#854F0B,#BA7517,#FAC775);}
-.grad-reading-streak{background:linear-gradient(135deg,#3C3489,#534AB7,#D4537E);}
-
 /* ── AUTH ── */
 #auth-screen{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 1.5rem;gap:1.75rem;background:linear-gradient(160deg,#EEEDFE 0%,#E1F5EE 50%,#FAEEDA 100%);}
-.app-logo{width:72px;height:72px;border-radius:20px;display:flex;align-items:center;justify-content:center;}
+.app-logo{width:72px;height:72px;border-radius:20px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#534AB7 0%,#7F77DD 40%,#1D9E75 80%,#9FE1CB 100%);}
 .auth-tagline{text-align:center;}
 .auth-tagline h1{font-size:26px;font-weight:700;color:var(--p900);margin-bottom:6px;}
 .auth-tagline p{font-size:15px;color:var(--g600);line-height:1.6;}
@@ -49,7 +41,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 /* ── APP SHELL ── */
 #app-screen{display:none;min-height:100vh;}
 .app-header{background:white;border-bottom:0.5px solid var(--g100);padding:0.875rem 1.25rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:20;}
-.header-logo{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.header-logo{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:linear-gradient(135deg,#534AB7 0%,#7F77DD 40%,#1D9E75 80%,#9FE1CB 100%);}
 .header-title{font-size:15px;font-weight:600;color:var(--g900);}
 .header-user{font-size:12px;color:var(--g400);}
 .panic-btn{background:var(--c50);border:0.5px solid var(--c100);border-radius:20px;padding:6px 12px;font-size:12px;font-weight:500;color:var(--c600);cursor:pointer;font-family:inherit;white-space:nowrap;}
@@ -60,29 +52,39 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .screen{display:none;padding:1.25rem;padding-bottom:3rem;}
 .screen.active{display:block;}
 
-/* ── TODAY HERO BANNER ── */
-.today-hero{border-radius:16px;padding:1.5rem;margin-bottom:1.25rem;position:relative;overflow:hidden;}
+/* ── INTRO BANNER ── */
+.intro-banner{background:linear-gradient(135deg,var(--p50),var(--t50));border:0.5px solid var(--p100);border-radius:14px;padding:1rem 1.125rem;margin-bottom:1.25rem;position:relative;}
+.intro-banner-title{font-size:14px;font-weight:600;color:var(--p900);margin-bottom:4px;}
+.intro-banner-body{font-size:13px;color:var(--p800);line-height:1.6;}
+.intro-banner-body a{color:var(--p600);font-weight:500;text-decoration:underline;background:none;border:none;cursor:pointer;font-family:inherit;font-size:13px;}
+.intro-dismiss{position:absolute;top:10px;right:12px;background:none;border:none;font-size:18px;color:var(--p400);cursor:pointer;line-height:1;padding:0;}
+
+/* ── TODAY HERO ── */
+.today-hero{border-radius:16px;padding:1.5rem;margin-bottom:1.25rem;background:linear-gradient(135deg,#534AB7 0%,#7F77DD 40%,#1D9E75 80%,#9FE1CB 100%);}
 .today-hero-date{font-size:13px;font-weight:500;color:rgba(255,255,255,0.8);margin-bottom:4px;}
 .today-hero-week{font-size:22px;font-weight:700;color:white;line-height:1.2;margin-bottom:2px;}
 .today-hero-theme{font-size:13px;color:rgba(255,255,255,0.75);}
 
-/* ── STREAK CARDS ── */
+/* ── STREAKS ── */
 .streaks-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.25rem;}
 .streak-card{border-radius:14px;padding:1rem 1.125rem;display:flex;align-items:center;gap:10px;}
 .streak-card.journal{background:var(--a50);border:0.5px solid var(--a100);}
 .streak-card.reading{background:var(--p50);border:0.5px solid var(--p100);}
 .streak-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.streak-icon.fire{background:linear-gradient(135deg,var(--a400),var(--a100));}
-.streak-icon.book{background:linear-gradient(135deg,var(--p600),var(--p400));}
+.streak-icon.fire{background:linear-gradient(135deg,var(--a600),var(--a100));}
+.streak-icon.book{background:linear-gradient(135deg,var(--p800),var(--p400));}
 .streak-num{font-size:22px;font-weight:700;color:var(--g900);line-height:1;}
 .streak-lbl{font-size:11px;color:var(--g400);margin-top:1px;}
 .streak-best{font-size:10px;color:var(--g400);margin-top:2px;}
 
-/* ── READING CARD (day 1) ── */
+/* ── READING CARD ── */
 .reading-card{background:white;border-radius:16px;border:0.5px solid var(--g100);overflow:hidden;margin-bottom:1rem;}
-.reading-card-header{padding:1rem 1.25rem 0.75rem;background:linear-gradient(135deg,#3C3489,#534AB7,#D4537E);}
+.reading-card-header{padding:1rem 1.25rem 0.875rem;background:linear-gradient(135deg,#3C3489,#534AB7,#D4537E);cursor:pointer;display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
 .reading-card-eyebrow{font-size:11px;font-weight:600;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;}
 .reading-card-title{font-size:17px;font-weight:700;color:white;line-height:1.3;}
+.reading-toggle-icon{color:rgba(255,255,255,0.7);font-size:18px;margin-top:4px;flex-shrink:0;transition:transform 0.2s;}
+.reading-toggle-icon.collapsed{transform:rotate(-90deg);}
+.reading-body-wrap{overflow:hidden;transition:max-height 0.3s ease;}
 .reading-card-body{padding:1.25rem;}
 .reading-body-text{font-size:14px;color:var(--g700,#4a4947);line-height:1.75;}
 .reading-body-text p{margin-bottom:0.875rem;}
@@ -91,24 +93,24 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .reading-body-text em{font-style:italic;}
 .reading-body-text h2{font-size:15px;font-weight:600;color:var(--g900);margin:1.25rem 0 0.5rem;}
 .reading-body-text blockquote{border-left:3px solid var(--p200);padding-left:12px;color:var(--g600);font-style:italic;margin:0.75rem 0;}
-.reading-body-text ul{margin:0.5rem 0 0.875rem 1.25rem;}
+.reading-body-text ul,.reading-body-text ol{margin:0.5rem 0 0.875rem 1.25rem;}
 .reading-body-text li{margin-bottom:4px;font-size:14px;line-height:1.6;}
 .reading-body-text a{color:var(--p600);text-decoration:underline;}
-.reading-divider{border-top:0.5px solid var(--g100);margin:0 1.25rem;}
+.reading-divider{border-top:0.5px solid var(--g100);}
 .reading-complete-row{padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;}
 .reading-complete-label{font-size:14px;font-weight:500;color:var(--g800);}
 .reading-complete-label small{display:block;font-size:12px;font-weight:400;color:var(--g400);margin-top:1px;}
-.mark-read-btn{padding:8px 16px;border-radius:20px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;border:none;background:var(--p600);color:white;}
-.mark-read-btn.done{background:var(--t50);color:var(--t600);border:0.5px solid var(--t100);}
+.mark-read-btn{padding:8px 16px;border-radius:20px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;border:none;background:var(--p600);color:white;transition:background 0.15s;}
+.mark-read-btn.done{background:var(--t50);color:var(--t600);border:0.5px solid var(--t100);cursor:default;}
 
-/* ── JOURNAL PROMPT ── */
+/* ── PROMPT CARD ── */
 .prompt-card{background:white;border-radius:14px;border:0.5px solid var(--g100);overflow:hidden;margin-bottom:1rem;}
 .prompt-card-top{padding:1rem 1.25rem 0.875rem;}
 .prompt-tag{display:inline-block;font-size:11px;font-weight:600;color:var(--p600);background:var(--p50);border-radius:20px;padding:3px 10px;margin-bottom:8px;}
 .prompt-text{font-size:15px;font-weight:500;color:var(--g900);line-height:1.6;}
 .prompt-note{font-size:13px;color:var(--g400);font-style:italic;line-height:1.5;border-left:2.5px solid var(--p100);padding-left:10px;margin-top:10px;}
 .prompt-textarea{width:100%;min-height:90px;padding:10px 12px;border:none;border-top:0.5px solid var(--g100);font-size:14px;color:var(--g900);background:var(--g50);resize:vertical;font-family:inherit;line-height:1.6;outline:none;display:block;}
-.prompt-textarea:focus{background:white;border-top-color:var(--p200);}
+.prompt-textarea:focus{background:white;}
 .prompt-textarea::placeholder{color:var(--g400);}
 .skip-note{font-size:12px;color:var(--g400);text-align:center;margin-bottom:0.75rem;font-style:italic;}
 .save-btn{width:100%;padding:14px;color:white;border:none;border-radius:12px;font-size:15px;font-weight:500;cursor:pointer;font-family:inherit;background:var(--p600);}
@@ -141,6 +143,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .wdot{width:28px;height:28px;border-radius:50%;background:var(--g100);display:flex;align-items:center;justify-content:center;}
 .wdot.done{background:var(--p600);}
 .wdot.today-empty{border:2px solid var(--p400);background:transparent;}
+.wdot.pre-join{background:var(--g50);border:0.5px dashed var(--g100);}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;}
 .cal-hdr{text-align:center;font-size:10px;font-weight:600;color:var(--g400);padding-bottom:4px;}
 .cal-day{aspect-ratio:1;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--g400);}
@@ -148,19 +151,23 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .cal-day.has-r{box-shadow:inset 0 0 0 1.5px var(--k400);}
 .cal-day.today{border:1.5px solid var(--p400);color:var(--p600);font-weight:600;}
 .cal-day.today.has-j{background:var(--p600);color:white;border-color:var(--p600);}
+.cal-day.pre-join{color:var(--g200);background:transparent;}
 .cal-legend{display:flex;gap:16px;margin-top:10px;font-size:11px;color:var(--g600);}
 .cal-legend span{display:flex;align-items:center;gap:5px;}
 .cal-legend-dot{width:10px;height:10px;border-radius:50%;}
 
 /* ── LIBRARY ── */
 .library-section{margin-bottom:1.5rem;}
-.lib-section-title{font-size:13px;font-weight:600;color:var(--g400);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.75rem;}
-.lib-card{background:white;border-radius:14px;border:0.5px solid var(--g100);overflow:hidden;margin-bottom:0.75rem;cursor:pointer;}
-.lib-card-header{padding:1rem 1.25rem;display:flex;align-items:center;gap:12px;}
+.lib-section-title{font-size:12px;font-weight:600;color:var(--g400);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.75rem;}
+.lib-card{background:white;border-radius:14px;border:0.5px solid var(--g100);overflow:hidden;margin-bottom:0.75rem;}
+.lib-card-header{padding:1rem 1.25rem;display:flex;align-items:center;gap:12px;cursor:pointer;}
 .lib-card-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .lib-card-name{font-size:15px;font-weight:600;color:var(--g900);}
 .lib-card-desc{font-size:13px;color:var(--g400);margin-top:2px;}
-.lib-card-chevron{margin-left:auto;color:var(--g400);}
+.lib-card-chevron{margin-left:auto;color:var(--g400);font-size:18px;transition:transform 0.2s;}
+.lib-card-chevron.open{transform:rotate(90deg);}
+.lib-card-body{display:none;border-top:0.5px solid var(--g100);}
+.lib-card-body.open{display:block;}
 .lib-content{padding:1.25rem;}
 .lib-content h2{font-size:16px;font-weight:600;color:var(--g900);margin:1.25rem 0 0.5rem;}
 .lib-content h2:first-child{margin-top:0;}
@@ -178,10 +185,28 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .lib-content .term:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
 .lib-content .term-word{font-size:14px;font-weight:600;color:var(--p800);margin-bottom:3px;}
 .lib-content .term-def{font-size:13px;color:var(--g600);line-height:1.6;}
-.lib-card-body{display:none;border-top:0.5px solid var(--g100);}
-.lib-card-body.open{display:block;}
+/* weekly reading cards inside library */
+.week-reading-item{border-radius:12px;overflow:hidden;margin-bottom:0.75rem;border:0.5px solid var(--g100);}
+.week-reading-hdr{padding:0.875rem 1.125rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer;background:linear-gradient(135deg,#3C3489,#534AB7,#D4537E);}
+.week-reading-hdr-left{display:flex;flex-direction:column;}
+.week-reading-eyebrow{font-size:10px;font-weight:600;color:rgba(255,255,255,0.65);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:2px;}
+.week-reading-title{font-size:14px;font-weight:600;color:white;}
+.week-reading-chevron{color:rgba(255,255,255,0.65);font-size:16px;transition:transform 0.2s;flex-shrink:0;}
+.week-reading-chevron.open{transform:rotate(90deg);}
+.week-reading-body{display:none;padding:1.125rem;background:white;}
+.week-reading-body.open{display:block;}
+.week-reading-body-text{font-size:14px;color:var(--g700,#4a4947);line-height:1.75;}
+.week-reading-body-text p{margin-bottom:0.875rem;}
+.week-reading-body-text p:last-child{margin-bottom:0;}
+.week-reading-body-text strong{font-weight:600;color:var(--g900);}
+.week-reading-body-text em{font-style:italic;}
+.week-reading-body-text h2{font-size:14px;font-weight:600;color:var(--g900);margin:1rem 0 0.375rem;}
+.week-reading-body-text ul,.week-reading-body-text ol{margin:0.5rem 0 0.875rem 1.125rem;}
+.week-reading-body-text li{margin-bottom:4px;font-size:13px;line-height:1.6;}
+.week-reading-body-text a{color:var(--p600);text-decoration:underline;}
+.week-reading-body-text blockquote{border-left:2.5px solid var(--p200);padding-left:10px;color:var(--g600);font-style:italic;margin:0.75rem 0;font-size:13px;}
 
-/* ── GROUNDING / PANIC ── */
+/* ── GROUNDING ── */
 .panic-script-box{background:var(--p50);border:0.5px solid var(--p100);border-radius:14px;padding:1rem 1.25rem;margin-bottom:1rem;}
 .panic-script-title{font-size:12px;font-weight:600;color:var(--p600);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;}
 .panic-script-body{font-size:14px;color:var(--p800);line-height:1.85;}
@@ -190,7 +215,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .grounding-item-body{font-size:13px;color:var(--g600);line-height:1.65;}
 .grounding-item-body li{margin-left:1rem;margin-bottom:2px;}
 
-/* ── MODALS ── */
+/* ── CELEBRATION MODAL ── */
+#celebrate-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:200;align-items:flex-end;justify-content:center;}
+#celebrate-modal.open{display:flex;}
+.celebrate-sheet{background:white;border-radius:24px 24px 0 0;width:100%;max-width:480px;padding:2rem 1.75rem 2.5rem;text-align:center;}
+.celebrate-emoji{font-size:52px;margin-bottom:1rem;display:block;line-height:1;}
+.celebrate-title{font-size:20px;font-weight:700;color:var(--g900);margin-bottom:8px;line-height:1.3;}
+.celebrate-body{font-size:15px;color:var(--g600);line-height:1.65;margin-bottom:1.5rem;}
+.celebrate-btn{width:100%;padding:14px;background:var(--p600);color:white;border:none;border-radius:12px;font-size:15px;font-weight:500;cursor:pointer;font-family:inherit;}
+.celebrate-btn:hover{background:var(--p800);}
+
+/* ── ENTRY MODAL ── */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.35);z-index:100;}
 .modal-overlay.open{display:block;}
 .modal-sheet{background:white;border-radius:20px 20px 0 0;position:fixed;bottom:0;left:0;right:0;max-height:88vh;overflow-y:auto;padding:1.5rem;max-width:480px;margin:0 auto;}
@@ -211,7 +246,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 <!-- ═══ AUTH ═══ -->
 <div id="auth-screen">
-  <div class="app-logo grad-hero">
+  <div class="app-logo">
     <svg width="36" height="36" viewBox="0 0 32 32" fill="none">
       <path d="M9 10c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H11c-1.1 0-2-.9-2-2V10z" stroke="white" stroke-width="1.5"/>
       <path d="M13 13h6M13 16.5h4M13 20h3" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
@@ -221,12 +256,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <h1>Mindset Journal</h1>
     <p>An 8-week journey of self-awareness,<br>compassion, and growth.</p>
   </div>
-
   <div class="auth-choice" id="auth-choice">
     <button class="btn-primary" onclick="showSignup()">Create your journal</button>
     <button class="btn-secondary" onclick="showLogin()">I already have an account</button>
   </div>
-
   <div class="auth-card" id="login-card" style="display:none;">
     <h2>Welcome back</h2>
     <p>Your journal is private — only you can access it.</p>
@@ -238,7 +271,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <button class="btn-primary" onclick="doLogin()">Sign in</button>
     <div class="auth-toggle"><button onclick="showAuthChoice()">← Back</button></div>
   </div>
-
   <div class="auth-card" id="signup-card" style="display:none;">
     <h2>Start your journal</h2>
     <p>8 weeks of guided prompts. Completely private.</p>
@@ -258,7 +290,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 <div id="app-screen">
   <div class="app-header">
     <div style="display:flex;align-items:center;gap:10px;">
-      <div class="header-logo grad-hero">
+      <div class="header-logo">
         <svg width="16" height="16" viewBox="0 0 32 32" fill="none">
           <path d="M9 10c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H11c-1.1 0-2-.9-2-2V10z" stroke="white" stroke-width="1.5"/>
           <path d="M13 13h6M13 16.5h4M13 20h3" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
@@ -274,7 +306,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <button class="logout-link" onclick="doLogout()">Sign out</button>
     </div>
   </div>
-
   <div class="nav-tabs">
     <button class="nav-tab active" onclick="switchTab('today',this)">Today</button>
     <button class="nav-tab" onclick="switchTab('history',this)">History</button>
@@ -282,18 +313,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <button class="nav-tab" onclick="switchTab('library',this)">Library</button>
   </div>
 
-  <!-- TODAY -->
-  <div id="tab-today" class="screen active">
-    <div id="today-content"></div>
-  </div>
-
-  <!-- HISTORY -->
-  <div id="tab-history" class="screen">
-    <div class="section-hdr">Past entries</div>
-    <div id="history-list"></div>
-  </div>
-
-  <!-- PROGRESS -->
+  <div id="tab-today" class="screen active"><div id="today-content"></div></div>
+  <div id="tab-history" class="screen"><div class="section-hdr">Past entries</div><div id="history-list"></div></div>
   <div id="tab-progress" class="screen">
     <div class="stats-grid">
       <div class="stat-card"><div class="stat-num" id="st-total">0</div><div class="stat-lbl">journal entries</div></div>
@@ -301,82 +322,24 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div class="stat-card"><div class="stat-num" id="st-r-total">0</div><div class="stat-lbl">readings done</div></div>
       <div class="stat-card"><div class="stat-num" id="st-r-streak">0</div><div class="stat-lbl">reading streak</div></div>
     </div>
-    <div class="prog-card">
-      <div class="prog-title">This week</div>
-      <div class="week-dots" id="week-dots"></div>
-    </div>
-    <div class="prog-card">
-      <div class="prog-title" id="cal-title"></div>
-      <div class="cal-grid" id="cal-grid"></div>
+    <div class="prog-card"><div class="prog-title">This week</div><div class="week-dots" id="week-dots"></div></div>
+    <div class="prog-card"><div class="prog-title" id="cal-title"></div><div class="cal-grid" id="cal-grid"></div>
       <div class="cal-legend">
         <span><div class="cal-legend-dot" style="background:var(--p400);"></div> Journaled</span>
         <span><div class="cal-legend-dot" style="border:1.5px solid var(--k400);background:transparent;"></div> Reading done</span>
       </div>
     </div>
   </div>
+  <div id="tab-library" class="screen"><div id="library-content"></div></div>
+</div>
 
-  <!-- LIBRARY -->
-  <div id="tab-library" class="screen">
-    <div class="library-section">
-      <div class="lib-section-title">Getting started</div>
-      <div class="lib-card" onclick="toggleLib('intro')">
-        <div class="lib-card-header">
-          <div class="lib-card-icon" style="background:linear-gradient(135deg,var(--p600),var(--p400));">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="white" stroke-width="1.5"/><path d="M10 9v5M10 7v1" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </div>
-          <div><div class="lib-card-name">Introduction</div><div class="lib-card-desc">How this program works</div></div>
-          <div class="lib-card-chevron">›</div>
-        </div>
-        <div class="lib-card-body" id="lib-intro">
-          <div class="lib-content" id="lib-intro-content"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="library-section">
-      <div class="lib-section-title">Reference</div>
-      <div class="lib-card" onclick="toggleLib('glossary')">
-        <div class="lib-card-header">
-          <div class="lib-card-icon" style="background:linear-gradient(135deg,var(--t600),var(--t400));">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="2" stroke="white" stroke-width="1.5"/><path d="M7 7h6M7 10h4M7 13h5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </div>
-          <div><div class="lib-card-name">Glossary</div><div class="lib-card-desc">Key terms explained</div></div>
-          <div class="lib-card-chevron">›</div>
-        </div>
-        <div class="lib-card-body" id="lib-glossary">
-          <div class="lib-content" id="lib-glossary-content"></div>
-        </div>
-      </div>
-
-      <div class="lib-card" onclick="toggleLib('further')">
-        <div class="lib-card-header">
-          <div class="lib-card-icon" style="background:linear-gradient(135deg,var(--a600),var(--a400));">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 5h12M4 8h8M4 11h10M4 14h6" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </div>
-          <div><div class="lib-card-name">Further exploration</div><div class="lib-card-desc">Books, articles & meditations</div></div>
-          <div class="lib-card-chevron">›</div>
-        </div>
-        <div class="lib-card-body" id="lib-further">
-          <div class="lib-content" id="lib-further-content"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="library-section">
-      <div class="lib-section-title">Support</div>
-      <div class="lib-card" onclick="toggleLib('grounding')">
-        <div class="lib-card-header">
-          <div class="lib-card-icon" style="background:linear-gradient(135deg,var(--c600),var(--c400));">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3c0 0-5 4-5 8a5 5 0 0010 0c0-4-5-8-5-8z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/></svg>
-          </div>
-          <div><div class="lib-card-name">Grounding practices</div><div class="lib-card-desc">For overwhelm & hard moments</div></div>
-          <div class="lib-card-chevron">›</div>
-        </div>
-        <div class="lib-card-body" id="lib-grounding">
-          <div class="lib-content" id="lib-grounding-content"></div>
-        </div>
-      </div>
-    </div>
+<!-- CELEBRATION MODAL -->
+<div id="celebrate-modal" onclick="closeCelebrate(event)">
+  <div class="celebrate-sheet">
+    <span class="celebrate-emoji" id="cel-emoji"></span>
+    <div class="celebrate-title" id="cel-title"></div>
+    <div class="celebrate-body" id="cel-body"></div>
+    <button class="celebrate-btn" onclick="closeCelebrateDirect()">Keep going</button>
   </div>
 </div>
 
@@ -396,7 +359,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div class="modal-sheet">
     <div class="modal-handle"></div>
     <p style="font-size:17px;font-weight:600;color:var(--g900);margin-bottom:8px;">Grounding practices</p>
-    <p style="font-size:14px;color:var(--g600);line-height:1.6;margin-bottom:1.25rem;">Use these anytime you need to return to the present moment. Even two or three minutes can create a meaningful shift.</p>
+    <p style="font-size:14px;color:var(--g600);line-height:1.6;margin-bottom:1.25rem;">Use these anytime you need to return to the present moment.</p>
     <div id="grounding-modal-content"></div>
     <button class="modal-close" onclick="closeGroundingModalDirect()">Close</button>
   </div>
@@ -405,185 +368,77 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 <div class="toast" id="toast"></div>
 
 <script>
-// ══ DATA ══
-const WEEKS = [
-  {
-    theme:"Inner critic awareness",
-    readingTitle:"Week 1 — Inner critic awareness",
-    reading:`<p>Imagine you have a radio in your brain that sometimes plays a harsh commentary track — replaying mistakes, magnifying failures, and dismissing your successes. Psychologists call this the <strong>inner critic</strong>. This week, you'll learn to recognize it.</p>
-<p><strong>Why it matters:</strong> Studies show that people who can <em>notice</em> their self-critical thoughts — rather than automatically believing them — recover faster from setbacks and maintain motivation more consistently. Just <em>noticing</em> these thoughts begins to weaken their power. Try it. See if labeling a thought ("there's that self-doubt again") creates even a tiny pause.</p>
-<p><strong>Why the inner critic exists:</strong> It's a leftover survival mechanism. It once helped our ancestors avoid social rejection — which, back then, could literally mean life or death. Today it misfires, making every mistake feel catastrophic.</p>
-<p><strong>The neuroscience:</strong> Lieberman et al. (2007) found that simply labeling a thought or feeling reduces activity in the amygdala (the brain's alarm center) and engages the prefrontal cortex instead. This is the basis of <strong>cognitive defusion</strong>, a technique from Acceptance and Commitment Therapy (ACT). Instead of arguing with a critical thought, you just observe it — like watching a spam email pop up. You don't have to open it.</p>
-<h2>A note on grief and the inner critic</h2>
-<p>If you are grieving, you may notice your inner critic is especially loud right now. Psychologists Stroebe and Schut's <strong>Dual Process Model</strong> (1999) describes grief as an oscillation between two states: <em>loss-orientation</em> (feeling the pain) and <em>restoration-orientation</em> (re-engaging with daily life). Both are healthy. And in both states, the inner critic often shows up — as shame, self-blame, or numbness.</p>
-<p>This week, just notice. You don't have to fix anything yet.</p>
-<h2>Go deeper</h2>
-<ul><li><a href="https://www.psychologytoday.com/us/blog/fulfillment-at-any-age/201708/the-hazards-of-self-criticism" target="_blank">The Hazards of Self-Criticism</a> — Psychology Today</li><li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6220915/" target="_blank">Affect labeling and the amygdala</a> — NIH / Lieberman et al.</li><li><a href="https://www.psychologytools.com/resource/cognitive-defusion/" target="_blank">Cognitive Defusion Exercises</a> — Psychology Tools</li></ul>`,
-    prompts:[
-      {text:"Write down 3 phrases your inner critic said today. No judgment — just observation. What does its voice sound like? Where do you notice it most?",note:"This is not about fixing anything. The goal is to notice, and start creating a tiny pause."},
-      {text:"When the inner critic speaks up, where do you feel it in your body?",note:"Physical sensations — chest tightness, a knot in the stomach, shallow breathing — are normal. Try to describe the sensation with curiosity: What shape does it have? Where exactly does it sit? Does it move?"},
-      {text:"Think about a recurring pattern in your inner critic. When does it tend to show up most (before tests, social situations, certain kinds of interactions)? Focus on noticing, not judging.",note:null},
-      {text:"Did any of today's inner critic thoughts relate to grief — missing something or someone, or blaming yourself for something connected to a loss? How would a compassionate friend respond to those thoughts?",note:null},
-      {text:"Think of something you don't understand well and get genuinely curious about it. What questions would a beginner ask? What would it feel like to approach your inner critic with that same beginner's curiosity?",note:null}
-    ]
-  },
-  {
-    theme:"Growth mindset",
-    readingTitle:"Week 2 — Growth mindset",
-    reading:`<p>Last week you began noticing your inner critic. This week, we zoom out and ask: <em>what do you believe about your own capacity to change?</em></p>
-<p>That belief — more than talent, more than circumstances — turns out to be one of the most powerful predictors of whether someone grows through difficulty or gets stuck in it.</p>
-<p><strong>The research:</strong> Psychologist Carol Dweck found that people fall along a spectrum between two orientations:</p>
-<ul><li>A <strong>fixed mindset</strong> assumes that abilities, intelligence, and personality are largely set. Failure feels like evidence of who you are.</li><li>A <strong>growth mindset</strong> assumes that abilities develop through effort, strategy, and time. Failure is information, not identity.</li></ul>
-<p>People with a growth mindset don't just feel better — they demonstrably do better. They persist longer, seek out feedback, and recover more quickly from setbacks.</p>
-<p><strong>Why this matters for the next 8 weeks:</strong> Some of what you'll encounter in this journal will be uncomfortable. A growth mindset is the scaffolding that makes that tolerable — because it means the discomfort has a point.</p>
-<p><strong>Try this:</strong> When you notice self-criticism this week, see if you can add the words <em>"...yet"</em> or <em>"...so far."</em> "I'm not good at sitting with hard feelings" becomes "I'm not good at sitting with hard feelings <em>yet</em>." Research shows it isn't as small as it sounds.</p>
-<h2>Go deeper</h2>
-<ul><li><em>Mindset: The New Psychology of Success</em> — Carol Dweck (2017 updated edition)</li><li><a href="https://www.mindsetworks.com/science/" target="_blank">Growth Mindset research overview</a> — Mindset Works</li><li><em>Atomic Habits</em> — James Clear</li></ul>`,
-    prompts:[
-      {text:"What's a skill or quality you used to believe was fixed about yourself (\"I'm just not good at...\") that you've since seen change, even slightly? What made the difference?",note:null},
-      {text:"Where in your life are you operating from a fixed mindset right now (\"I'll never be good at this\")? What would a growth mindset version of that belief sound like?",note:null},
-      {text:"Notice a moment today where you avoided something because you were afraid of failing at it. What's the smallest possible version of trying that thing — just enough to gather information, not to succeed?",note:null},
-      {text:"What's a goofy habit or defense mechanism you've developed in the past to protect yourself from failure? Does it still serve you well now, or has it become a limitation?",note:null},
-      {text:"Write about a time the inner critic tried to convince you that a struggle was proof you'd never improve. What actually happened over time?",note:null}
-    ]
-  },
-  {
-    theme:"Emotional & interoception awareness",
-    readingTitle:"Week 3 — Emotional & interoception awareness",
-    reading:`<p>Ever felt butterflies in your stomach before something stressful? That's your brain reading bodily signals to infer your emotional state. This week, you'll develop that skill consciously — like becoming a mood detective.</p>
-<p><strong>The science:</strong> Research finds that people with good <em>interoceptive awareness</em> (the ability to sense internal body signals) recover faster from stress. A key part of this is learning to distinguish between similar physical states — for example, knowing that "my heart is racing" might mean excitement rather than fear.</p>
-<blockquote>Physical symptoms during emotional moments — tightness, heaviness, shakiness, a racing heart — are a completely normal part of how emotions work. They are not a sign that something is medically wrong. They are your nervous system doing its job. Naming them gently is one of the most effective ways to reduce their intensity.</blockquote>
-<p><strong>Try this:</strong> Next time you're upset, pause and check in with your body. Is your jaw tight? Shoulders high? Stomach heavy? Those are clues — not just noise.</p>
-<p><strong>This is tied to emotional granularity</strong> — the ability to pinpoint subtle differences between feelings (e.g., "I'm frustrated <em>because my effort wasn't seen</em>" vs. just "I'm upset"). Research by Kashdan et al. (2015) found that people who can describe emotions in more detail recover from them faster and make better decisions while in them.</p>
-<h2>Go deeper</h2>
-<ul><li><a href="https://www.frontiersin.org/articles/10.3389/fpsyg.2021.712418/full" target="_blank">Emotional Granularity</a> — Frontiers in Psychology</li><li><a href="https://wexnermedical.osu.edu/media/medialibraries/wexner/documents/research/neuroscience-research-institute/publications/2015/kashdan-et-all-unpacking.pdf" target="_blank">Advancing Emotional Science</a> — Kashdan et al.</li></ul>`,
-    prompts:[
-      {text:"Pick one emotion you felt today and try to describe it with as much physical detail as possible. Location, intensity, texture, temperature — whatever comes.",note:"Body sensations during emotional moments (heaviness, tightness, shakiness, a racing heart) are completely normal. They're not a sign that you're losing control. They're information."},
-      {text:"Think of a time you misread a physical sensation as something negative (e.g., read normal adrenaline as anxiety, or excitement as danger). What was actually happening? Try renaming it more precisely.",note:null},
-      {text:"What emotion did you feel most strongly today? Now try to get more specific: Was it sadness or disappointment? Frustration or helplessness? Anxiety or anticipation? The more precisely you can name it, the more manageable it tends to become.",note:null},
-      {text:"Where do you feel grief in your body, on days when it's present? Can you describe it — a color, a texture, a weight?",note:"Grief often lives in the chest (heaviness), throat (tightness), or stomach (hollowness). There's no right answer. Just notice."},
-      {text:"Notice a moment today when your body gave you information before your mind caught up. What was the signal? What was it telling you?",note:null}
-    ]
-  },
-  {
-    theme:"Controllables + testing assumptions",
-    readingTitle:"Week 4 — Controllables + testing assumptions",
-    reading:`<p>Our brain loves imagining disasters. <em>What if I completely fail? What if they hate me? What if nothing gets better?</em> But worrying about what you can't control drains energy from what you actually can influence.</p>
-<p><strong>The psychology:</strong> This is the concept of <strong>locus of control</strong>, introduced by psychologist Julian Rotter in 1966. People who focus on their own actions and choices — <em>internal</em> locus — feel less helpless. Research across 135 studies consistently confirms this.</p>
-<p><strong>Your challenge this week:</strong> When you feel stressed, write down what's actually in your control right now, then take one small action toward it. Research on self-efficacy (Bandura, 1997) consistently shows that small, successful actions — even minor ones — build the belief that you can influence your circumstances.</p>
-<hr>
-<p><strong>Cognitive distortions</strong> are mental shortcuts gone wrong. They're automatic — not character flaws. Common ones include:</p>
-<ul><li><em>Catastrophizing</em> — assuming the worst will happen</li><li><em>Mind-reading</em> — assuming you know what others think</li><li><em>All-or-nothing thinking</em> — "if it's not perfect, it's a failure"</li></ul>
-<p>The antidote? <strong>Behavioral experiments:</strong> test whether your feared outcome actually happens. Research shows that people significantly overestimate the likelihood and severity of negative social outcomes — most feared reactions simply don't materialize.</p>
-<h2>Go deeper</h2>
-<ul><li><a href="https://www.verywellmind.com/cognitive-distortions-2794546" target="_blank">Thinking Traps explained</a> — Verywell Mind</li></ul>`,
-    prompts:[
-      {text:"When you feel anxious or overwhelmed today, write down two columns: What I can control and What I can't. Then take one small action in the first column.",note:null},
-      {text:"Think of a time you feared failure and things turned out okay — or at least differently than you feared. What does that tell you about how reliable your fear-predictions are?",note:null},
-      {text:"What's a cognitive distortion you notice in yourself regularly (catastrophizing, mind-reading, all-or-nothing thinking)? Write down one piece of evidence that contradicts it.",note:null},
-      {text:"Write about a situation where you felt completely out of control. Looking back: was there anything, even small, that you could have influenced? What would it have looked like to take that action?",note:null},
-      {text:"Set up a small behavioral experiment: predict how a social interaction or situation will go (e.g., \"they'll be annoyed if I ask for help\"), then do it anyway and record what actually happened.",note:null}
-    ]
-  },
-  {
-    theme:"Patterns",
-    readingTitle:"Week 5 — Look for patterns",
-    reading:`<p>Imagine your moods and thoughts are data points. This week, you'll analyze them like a scientist spotting trends.</p>
-<p><strong>Research insight:</strong> Studies on cognitive-behavioral therapy show that noticing patterns (e.g., <em>"I always assume my friends are angry at me after quiet texts"</em>) helps rewire automatic reactions.</p>
-<p><strong>The brain's negativity bias</strong> is real — it's an evolutionary feature that kept our ancestors alive by prioritizing threats. The result is that you probably remember the one critical comment more vividly than the five compliments. CBT research consistently shows that writing down negative automatic thoughts — making them visible and external — weakens their grip significantly.</p>
-<p><strong>What to do:</strong> Keep a brief pattern log this week. When does the inner critic show up most loudly? After which kinds of events? Notice the recurring triggers — tests, social interactions, certain relationships. Just identifying the pattern, without trying to fix it, is itself a meaningful intervention.</p>
-<p><strong>The brain also loves confirmation bias</strong> — only noticing evidence that fits existing beliefs. The antidote is the <strong>"exception hunt"</strong>: actively track moments that contradict the belief. This isn't toxic positivity. It's correcting a systematic perceptual error.</p>
-<h2>Go deeper</h2>
-<ul><li><a href="https://www.healthline.com/health/negativity-bias" target="_blank">Negativity Bias explained</a> — Healthline</li><li><a href="https://www.psychologytools.com/resource/thought-record/" target="_blank">CBT thought records</a> — Psychology Tools</li></ul>`,
-    prompts:[
-      {text:"What patterns do you notice in when and where the inner critic shows up most loudly? (Tests? Social situations? Certain relationships? After particular kinds of conversations?)",note:null},
-      {text:"Write down a negative belief you hold about yourself. Now go on an \"exception hunt\" — write down 3 pieces of evidence that contradict it. They don't have to be big.",note:null},
-      {text:"What story did your brain tell you today about a situation? (E.g., \"she didn't text back because she's angry at me.\") What's an alternative explanation that fits the same facts?",note:null},
-      {text:"What does your inner critic do after you experience a loss or setback? Notice the pattern without judgment. Is there a predictable sequence of thoughts?",note:null},
-      {text:"\"I choose my effort even when I can't choose the outcome.\" Write about what that would look like in one area of your life right now.",note:null}
-    ]
-  },
-  {
-    theme:"Self-compassion",
-    readingTitle:"Week 6 — Self-compassion & persistence",
-    reading:`<p>What if being kind to yourself was a superpower?</p>
-<p>Research shows that treating yourself with compassion during hard moments makes those moments a little easier to move through — and makes you more likely to try again afterward, not less.</p>
-<p><strong>Dr. Kristin Neff's model</strong> breaks self-compassion into three parts:</p>
-<ol><li><strong>Mindfulness</strong> — noticing what you're feeling without exaggerating or suppressing it</li><li><strong>Common humanity</strong> — recognizing that struggle is part of being human, not a personal defect</li><li><strong>Self-kindness</strong> — responding with warmth rather than judgment</li></ol>
-<p><strong>The evidence:</strong> In a 2022 study, students who used self-compassionate self-talk during a difficult test outperformed those who used self-criticism. A meta-analysis of self-compassion research consistently finds that self-compassionate people are significantly more likely to seek feedback and engage with challenges — because shame blocks learning and self-compassion removes that block.</p>
-<p><strong>The "try again" myth is debunked by the evidence.</strong> People who respond to failure with self-compassion actually perform better on subsequent attempts. Self-compassion and high standards are not in conflict.</p>
-<h2>Go deeper</h2>
-<ul><li><a href="https://wellmd.stanford.edu/content/dam/sm/wellmd/documents/Self-Compassion-Infographic.pdf" target="_blank">The Science of Self-Compassion</a> — Stanford Medicine</li><li><a href="https://greatergood.berkeley.edu/article/item/try_a_little_kindness_toward_yourself" target="_blank">Try Self-Compassion</a> — Greater Good, UC Berkeley</li><li><a href="https://self-compassion.org/category/exercises/" target="_blank">Self-Compassion Exercises</a> — Dr. Kristin Neff</li></ul>`,
-    prompts:[
-      {text:"Imagine a friend coming to you with the exact struggle you're currently in. What would you say to them? Now say it to yourself.",note:null},
-      {text:"Write about a failure or mistake from this week. Then write about it again — this time the way you'd respond to a close friend who made the same mistake.",note:null},
-      {text:"Where do you have the highest standards for yourself? Are those standards helping you or exhausting you right now? What would \"good enough\" look like in that area?",note:null},
-      {text:"Think of a moment recently when you stayed calm under difficult circumstances. What made that possible? Take a moment to actually appreciate that about yourself.",note:null},
-      {text:"Write down 3 things you genuinely appreciate about who you are — not achievements, but qualities. Notice how it feels to write them.",note:null}
-    ]
-  },
-  {
-    theme:"Authenticity & process goals",
-    readingTitle:"Week 7 — Authenticity & process goals",
-    reading:`<p><em>Being yourself</em> sounds simple. But most of us have so many competing voices — what parents expected, what peers valued, what we think we should want — that knowing which voice is actually ours can take real work. Psychologists call these competing internal frameworks <em>self-schemas</em>.</p>
-<p><strong>Try this filter:</strong> For each significant decision or goal, ask: <em>Is this what I actually want, or what someone else expects?</em> It sounds obvious, but most people rarely pause long enough to ask it.</p>
-<p><strong>Process goals vs. outcome goals:</strong> Instead of "I want to be fluent in Spanish," try "I'll practice Spanish for 15 minutes daily." Process goals reduce pressure because they're about effort — something in your control — rather than outcome, which rarely is.</p>
-<p><strong>The research:</strong> Self-concordance theory (Sheldon & Elliot, 1999) finds that goals aligned with personal values sustain effort better and are significantly more likely to be achieved than goals driven by external pressure.</p>
-<p><strong>Small wins build momentum.</strong> Research on motivation shows that tracking incremental progress triggers dopamine release, reinforcing the habit far more effectively than focusing on the distant end goal.</p>
-<h2>Go deeper</h2>
-<ul><li><a href="https://www.psychologytoday.com/us/blog/click-here-happiness/201803/the-science-authentic-happiness" target="_blank">The Science of Authentic Happiness</a> — Psychology Today</li><li><em>Atomic Habits</em> — James Clear</li></ul>`,
-    prompts:[
-      {text:"Write down a goal you're currently pursuing. Is it a \"should\" goal (external pressure) or a \"want\" goal (internal desire)? What's the difference in how each feels in your body when you think about it?",note:null},
-      {text:"Pick one ongoing commitment in your life. Rewrite it as a process goal (specific, behavior-based, in your control) rather than an outcome goal.",note:null},
-      {text:"What values feel most like you right now — not the you you're supposed to be, but the you that shows up when no one is watching? Write about one of them.",note:null},
-      {text:"What part of yourself do you tend to hide from most people? What would it cost you to let that part be seen — and what might you gain?",note:null},
-      {text:"Write about one small way you've been more authentic this week than you might have been a few months ago. It doesn't have to be dramatic.",note:null}
-    ]
-  },
-  {
-    theme:"Integration & deliberate practice",
-    readingTitle:"Week 8 — Deliberate practice & focus",
-    reading:`<p>You've spent seven weeks building awareness — of your inner critic, your emotional landscape, your patterns, your values. This final week is about how you practice going forward.</p>
-<p>The research on skill development distinguishes between <em>repetition</em> (doing something over and over) and <em>deliberate practice</em> (targeting the specific areas that need work, with focused attention). Improvement comes from strategic effort — not just from trying harder at what's already comfortable.</p>
-<p><strong>Single-tasking works.</strong> Cognitive science research on attention switching found that multitasking forces the brain to constantly context-switch, wasting 20–40% of productive time depending on task complexity. This applies to emotional work too: giving your journaling five undivided minutes is more useful than twenty distracted ones.</p>
-<p><strong>Try the 20-5 approach:</strong> 20 minutes of focused work, 5 minutes away from screens. Brief mental breaks prevent the vigilance decrements that make sustained focus harder over time. Think of attention like a muscle — it needs both exertion and recovery.</p>
-<p><strong>Closing the loop:</strong> This week, look back at your journal from Week 1. What's different? Not perfect — different. What's one pattern you've disrupted, even slightly? What's one moment this month where you responded to yourself with more gentleness than you would have eight weeks ago?</p>
-<p>That's the work. And it doesn't stop here.</p>
-<h2>Go deeper</h2>
-<ul><li><a href="https://poorvucenter.yale.edu/sites/default/files/files/Deliberate%20Practice%20and%20Learning.pdf" target="_blank">Deliberate Practice and Learning</a> — Yale Teaching Commons</li><li><a href="https://www.npr.org/2013/05/10/182861382/the-myth-of-multitasking" target="_blank">The Myth of Multitasking</a> — NPR</li><li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7075496/" target="_blank">Attention and Cognitive Control</a> — NIH</li></ul>`,
-    prompts:[
-      {text:"Look back at your very first journal entry. What's one thing that's shifted — even slightly — in how you talk to yourself?",note:null},
-      {text:"What's a practice from these 8 weeks you want to keep? Write it as a specific, concrete commitment (not \"be kinder to myself\" but \"when the inner critic shows up, I'll pause and label the thought before reacting\").",note:null},
-      {text:"Write about a moment this month where you responded to yourself with more compassion than you would have 8 weeks ago. What made the difference?",note:null},
-      {text:"What do you want to be true about how you treat yourself one year from now? Write a brief letter from that future self to today's self.",note:null},
-      {text:"What's one single-tasking practice you can build into your daily routine — a time to give your attention to just one thing? Write about what that would look and feel like.",note:null}
-    ]
-  }
+// ══ WEEK DATA ══
+const WEEKS=[
+  {theme:"Inner critic awareness",readingTitle:"Week 1 — Inner critic awareness",reading:`<p>Imagine you have a radio in your brain that sometimes plays a harsh commentary track — replaying mistakes, magnifying failures, and dismissing your successes. Psychologists call this the <strong>inner critic</strong>. This week, you'll learn to recognize it.</p><p><strong>Why it matters:</strong> Studies show that people who can <em>notice</em> their self-critical thoughts — rather than automatically believing them — recover faster from setbacks and maintain motivation more consistently. Just <em>noticing</em> these thoughts begins to weaken their power. Try it. See if labeling a thought ("there's that self-doubt again") creates even a tiny pause.</p><p><strong>Why the inner critic exists:</strong> It's a leftover survival mechanism. It once helped our ancestors avoid social rejection — which, back then, could literally mean life or death. Today it misfires, making every mistake feel catastrophic.</p><p><strong>The neuroscience:</strong> Lieberman et al. (2007) found that simply labeling a thought or feeling reduces activity in the amygdala (the brain's alarm center) and engages the prefrontal cortex instead. This is the basis of <strong>cognitive defusion</strong>, a technique from Acceptance and Commitment Therapy (ACT). Instead of arguing with a critical thought, you just observe it — like watching a spam email pop up. You don't have to open it.</p><h2>A note on grief and the inner critic</h2><p>If you are grieving, you may notice your inner critic is especially loud right now. Psychologists Stroebe and Schut's <strong>Dual Process Model</strong> (1999) describes grief as an oscillation between two states: <em>loss-orientation</em> (feeling the pain) and <em>restoration-orientation</em> (re-engaging with daily life). Both are healthy. And in both states, the inner critic often shows up — as shame, self-blame, or numbness. This week, just notice. You don't have to fix anything yet.</p><h2>Go deeper</h2><ul><li><a href="https://www.psychologytoday.com/us/blog/fulfillment-at-any-age/201708/the-hazards-of-self-criticism" target="_blank">The Hazards of Self-Criticism</a> — Psychology Today</li><li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6220915/" target="_blank">Affect labeling and the amygdala</a> — NIH / Lieberman et al.</li><li><a href="https://www.psychologytools.com/resource/cognitive-defusion/" target="_blank">Cognitive Defusion Exercises</a> — Psychology Tools</li></ul>`,
+    prompts:[{text:"Write down 3 phrases your inner critic said today. No judgment — just observation. What does its voice sound like? Where do you notice it most?",note:"This is not about fixing anything. The goal is to notice, and start creating a tiny pause."},{text:"When the inner critic speaks up, where do you feel it in your body?",note:"Physical sensations — chest tightness, a knot in the stomach, shallow breathing — are normal. Try to describe the sensation with curiosity: What shape does it have? Where exactly does it sit? Does it move?"},{text:"Think about a recurring pattern in your inner critic. When does it tend to show up most (before tests, social situations, certain kinds of interactions)? Focus on noticing, not judging.",note:null},{text:"Did any of today's inner critic thoughts relate to grief — missing something or someone, or blaming yourself for something connected to a loss? How would a compassionate friend respond to those thoughts?",note:null},{text:"Think of something you don't understand well and get genuinely curious about it. What questions would a beginner ask? What would it feel like to approach your inner critic with that same beginner's curiosity?",note:null}]},
+  {theme:"Growth mindset",readingTitle:"Week 2 — Growth mindset",reading:`<p>Last week you began noticing your inner critic. This week, we zoom out and ask: <em>what do you believe about your own capacity to change?</em></p><p><strong>The research:</strong> Psychologist Carol Dweck found that people fall along a spectrum between two orientations:</p><ul><li>A <strong>fixed mindset</strong> assumes that abilities, intelligence, and personality are largely set. Failure feels like evidence of who you are.</li><li>A <strong>growth mindset</strong> assumes that abilities develop through effort, strategy, and time. Failure is information, not identity.</li></ul><p>People with a growth mindset don't just feel better — they demonstrably do better. They persist longer, seek out feedback, and recover more quickly from setbacks.</p><p><strong>Why this matters for the next 8 weeks:</strong> Some of what you'll encounter in this journal will be uncomfortable. A growth mindset is the scaffolding that makes that tolerable — because it means the discomfort has a point.</p><p><strong>Try this:</strong> When you notice self-criticism this week, see if you can add the words <em>"...yet"</em> or <em>"...so far."</em> "I'm not good at sitting with hard feelings" becomes "I'm not good at sitting with hard feelings <em>yet</em>." Research shows it isn't as small as it sounds.</p><h2>Go deeper</h2><ul><li><em>Mindset: The New Psychology of Success</em> — Carol Dweck (2017 updated edition)</li><li><a href="https://www.mindsetworks.com/science/" target="_blank">Growth Mindset research overview</a> — Mindset Works</li><li><em>Atomic Habits</em> — James Clear</li></ul>`,
+    prompts:[{text:"What's a skill or quality you used to believe was fixed about yourself (\"I'm just not good at...\") that you've since seen change, even slightly? What made the difference?",note:null},{text:"Where in your life are you operating from a fixed mindset right now (\"I'll never be good at this\")? What would a growth mindset version of that belief sound like?",note:null},{text:"Notice a moment today where you avoided something because you were afraid of failing at it. What's the smallest possible version of trying that thing — just enough to gather information, not to succeed?",note:null},{text:"What's a goofy habit or defense mechanism you've developed in the past to protect yourself from failure? Does it still serve you well now, or has it become a limitation?",note:null},{text:"Write about a time the inner critic tried to convince you that a struggle was proof you'd never improve. What actually happened over time?",note:null}]},
+  {theme:"Emotional & interoception awareness",readingTitle:"Week 3 — Emotional & interoception awareness",reading:`<p>Ever felt butterflies in your stomach before something stressful? That's your brain reading bodily signals to infer your emotional state. This week, you'll develop that skill consciously — like becoming a mood detective.</p><p><strong>The science:</strong> Research finds that people with good <em>interoceptive awareness</em> recover faster from stress. A key part of this is learning to distinguish between similar physical states — for example, knowing that "my heart is racing" might mean excitement rather than fear.</p><blockquote>Physical symptoms during emotional moments — tightness, heaviness, shakiness, a racing heart — are completely normal. They are not a sign that something is medically wrong. They are your nervous system doing its job. Naming them gently is one of the most effective ways to reduce their intensity.</blockquote><p><strong>Try this:</strong> Next time you're upset, pause and check in with your body. Is your jaw tight? Shoulders high? Stomach heavy? Those are clues — not just noise.</p><p><strong>This is tied to emotional granularity</strong> — the ability to pinpoint subtle differences between feelings. Research by Kashdan et al. (2015) found that people who can describe emotions in more detail recover from them faster and make better decisions while in them.</p><h2>Go deeper</h2><ul><li><a href="https://www.frontiersin.org/articles/10.3389/fpsyg.2021.712418/full" target="_blank">Emotional Granularity</a> — Frontiers in Psychology</li><li><a href="https://wexnermedical.osu.edu/media/medialibraries/wexner/documents/research/neuroscience-research-institute/publications/2015/kashdan-et-all-unpacking.pdf" target="_blank">Advancing Emotional Science</a> — Kashdan et al.</li></ul>`,
+    prompts:[{text:"Pick one emotion you felt today and try to describe it with as much physical detail as possible. Location, intensity, texture, temperature — whatever comes.",note:"Body sensations during emotional moments (heaviness, tightness, shakiness, a racing heart) are completely normal. They're not a sign that you're losing control. They're information."},{text:"Think of a time you misread a physical sensation as something negative (e.g., read normal adrenaline as anxiety, or excitement as danger). What was actually happening? Try renaming it more precisely.",note:null},{text:"What emotion did you feel most strongly today? Now try to get more specific: Was it sadness or disappointment? Frustration or helplessness? Anxiety or anticipation? The more precisely you can name it, the more manageable it tends to become.",note:null},{text:"Where do you feel grief in your body, on days when it's present? Can you describe it — a color, a texture, a weight?",note:"Grief often lives in the chest (heaviness), throat (tightness), or stomach (hollowness). There's no right answer. Just notice."},{text:"Notice a moment today when your body gave you information before your mind caught up. What was the signal? What was it telling you?",note:null}]},
+  {theme:"Controllables + testing assumptions",readingTitle:"Week 4 — Controllables + testing assumptions",reading:`<p>Our brain loves imagining disasters. <em>What if I completely fail? What if they hate me?</em> But worrying about what you can't control drains energy from what you actually can influence.</p><p><strong>The psychology:</strong> This is the concept of <strong>locus of control</strong>. People who focus on their own actions and choices — <em>internal</em> locus — feel less helpless. Research across 135 studies consistently confirms this.</p><p><strong>Your challenge this week:</strong> When you feel stressed, write down what's actually in your control right now, then take one small action toward it. Research on self-efficacy (Bandura, 1997) consistently shows that small, successful actions — even minor ones — build the belief that you can influence your circumstances.</p><hr><p><strong>Cognitive distortions</strong> are mental shortcuts gone wrong. Common ones include:</p><ul><li><em>Catastrophizing</em> — assuming the worst will happen</li><li><em>Mind-reading</em> — assuming you know what others think</li><li><em>All-or-nothing thinking</em> — "if it's not perfect, it's a failure"</li></ul><p>The antidote? <strong>Behavioral experiments:</strong> test whether your feared outcome actually happens. Research shows that people significantly overestimate the likelihood and severity of negative social outcomes.</p><h2>Go deeper</h2><ul><li><a href="https://www.verywellmind.com/cognitive-distortions-2794546" target="_blank">Thinking Traps explained</a> — Verywell Mind</li></ul>`,
+    prompts:[{text:"When you feel anxious or overwhelmed today, write down two columns: What I can control and What I can't. Then take one small action in the first column.",note:null},{text:"Think of a time you feared failure and things turned out okay — or at least differently than you feared. What does that tell you about how reliable your fear-predictions are?",note:null},{text:"What's a cognitive distortion you notice in yourself regularly (catastrophizing, mind-reading, all-or-nothing thinking)? Write down one piece of evidence that contradicts it.",note:null},{text:"Write about a situation where you felt completely out of control. Looking back: was there anything, even small, that you could have influenced? What would it have looked like to take that action?",note:null},{text:"Set up a small behavioral experiment: predict how a social interaction or situation will go (e.g., \"they'll be annoyed if I ask for help\"), then do it anyway and record what actually happened.",note:null}]},
+  {theme:"Patterns",readingTitle:"Week 5 — Look for patterns",reading:`<p>Imagine your moods and thoughts are data points. This week, you'll analyze them like a scientist spotting trends.</p><p><strong>Research insight:</strong> Studies on cognitive-behavioral therapy show that noticing patterns helps rewire automatic reactions. Keep a simple pattern log: each time you feel a strong emotion, note what triggered it and what story your brain told.</p><p><strong>The brain's negativity bias</strong> is real — it's an evolutionary feature that kept our ancestors alive by prioritizing threats. The result is that you probably remember the one critical comment more vividly than the five compliments. Writing down negative automatic thoughts — making them visible and external — weakens their grip significantly.</p><p><strong>The brain also loves confirmation bias</strong> — only noticing evidence that fits existing beliefs. The antidote is the <strong>"exception hunt"</strong>: actively track moments that contradict the belief. This isn't toxic positivity. It's correcting a systematic perceptual error.</p><h2>Go deeper</h2><ul><li><a href="https://www.healthline.com/health/negativity-bias" target="_blank">Negativity Bias explained</a> — Healthline</li><li><a href="https://www.psychologytools.com/resource/thought-record/" target="_blank">CBT thought records</a> — Psychology Tools</li></ul>`,
+    prompts:[{text:"What patterns do you notice in when and where the inner critic shows up most loudly? (Tests? Social situations? Certain relationships? After particular kinds of conversations?)",note:null},{text:"Write down a negative belief you hold about yourself. Now go on an \"exception hunt\" — write down 3 pieces of evidence that contradict it. They don't have to be big.",note:null},{text:"What story did your brain tell you today about a situation? (E.g., \"she didn't text back because she's angry at me.\") What's an alternative explanation that fits the same facts?",note:null},{text:"What does your inner critic do after you experience a loss or setback? Notice the pattern without judgment. Is there a predictable sequence of thoughts?",note:null},{text:"\"I choose my effort even when I can't choose the outcome.\" Write about what that would look like in one area of your life right now.",note:null}]},
+  {theme:"Self-compassion",readingTitle:"Week 6 — Self-compassion & persistence",reading:`<p>What if being kind to yourself was a superpower?</p><p>Research shows that treating yourself with compassion during hard moments makes those moments a little easier to move through — and makes you more likely to try again afterward, not less.</p><p><strong>Dr. Kristin Neff's model</strong> breaks self-compassion into three parts:</p><ol><li><strong>Mindfulness</strong> — noticing what you're feeling without exaggerating or suppressing it</li><li><strong>Common humanity</strong> — recognizing that struggle is part of being human, not a personal defect</li><li><strong>Self-kindness</strong> — responding with warmth rather than judgment</li></ol><p><strong>The evidence:</strong> In a 2022 study, students who used self-compassionate self-talk during a difficult test outperformed those who used self-criticism. Self-compassion and high standards are not in conflict. Studies suggest those who practice self-compassion spend less time ruminating after failure, freeing up cognitive energy for actual problem-solving.</p><h2>Go deeper</h2><ul><li><a href="https://wellmd.stanford.edu/content/dam/sm/wellmd/documents/Self-Compassion-Infographic.pdf" target="_blank">The Science of Self-Compassion</a> — Stanford Medicine</li><li><a href="https://greatergood.berkeley.edu/article/item/try_a_little_kindness_toward_yourself" target="_blank">Try Self-Compassion</a> — Greater Good, UC Berkeley</li><li><a href="https://self-compassion.org/category/exercises/" target="_blank">Self-Compassion Exercises</a> — Dr. Kristin Neff</li></ul>`,
+    prompts:[{text:"Imagine a friend coming to you with the exact struggle you're currently in. What would you say to them? Now say it to yourself.",note:null},{text:"Write about a failure or mistake from this week. Then write about it again — this time the way you'd respond to a close friend who made the same mistake.",note:null},{text:"Where do you have the highest standards for yourself? Are those standards helping you or exhausting you right now? What would \"good enough\" look like in that area?",note:null},{text:"Think of a moment recently when you stayed calm under difficult circumstances. What made that possible? Take a moment to actually appreciate that about yourself.",note:null},{text:"Write down 3 things you genuinely appreciate about who you are — not achievements, but qualities. Notice how it feels to write them.",note:null}]},
+  {theme:"Authenticity & process goals",readingTitle:"Week 7 — Authenticity & process goals",reading:`<p><em>Being yourself</em> sounds simple. But most of us have so many competing voices — what parents expected, what peers valued, what we think we should want — that knowing which voice is actually ours can take real work.</p><p><strong>Try this filter:</strong> For each significant decision or goal, ask: <em>Is this what I actually want, or what someone else expects?</em></p><p><strong>Process goals vs. outcome goals:</strong> Instead of "I want to be fluent in Spanish," try "I'll practice Spanish for 15 minutes daily." Process goals reduce pressure because they're about effort — something in your control — rather than outcome, which rarely is.</p><p><strong>The research:</strong> Self-concordance theory (Sheldon & Elliot, 1999) finds that goals aligned with personal values sustain effort better and are significantly more likely to be achieved than goals driven by external pressure.</p><p><strong>Small wins build momentum.</strong> Research on motivation shows that tracking incremental progress triggers dopamine release, reinforcing the habit far more effectively than focusing on the distant end goal.</p><h2>Go deeper</h2><ul><li><a href="https://www.psychologytoday.com/us/blog/click-here-happiness/201803/the-science-authentic-happiness" target="_blank">The Science of Authentic Happiness</a> — Psychology Today</li><li><em>Atomic Habits</em> — James Clear</li></ul>`,
+    prompts:[{text:"Write down a goal you're currently pursuing. Is it a \"should\" goal (external pressure) or a \"want\" goal (internal desire)? What's the difference in how each feels in your body when you think about it?",note:null},{text:"Pick one ongoing commitment in your life. Rewrite it as a process goal (specific, behavior-based, in your control) rather than an outcome goal.",note:null},{text:"What values feel most like you right now — not the you you're supposed to be, but the you that shows up when no one is watching? Write about one of them.",note:null},{text:"What part of yourself do you tend to hide from most people? What would it cost you to let that part be seen — and what might you gain?",note:null},{text:"Write about one small way you've been more authentic this week than you might have been a few months ago. It doesn't have to be dramatic.",note:null}]},
+  {theme:"Integration & deliberate practice",readingTitle:"Week 8 — Deliberate practice & focus",reading:`<p>You've spent seven weeks building awareness — of your inner critic, your emotional landscape, your patterns, your values. This final week is about how you practice going forward.</p><p>The research on skill development distinguishes between <em>repetition</em> (doing something over and over) and <em>deliberate practice</em> (targeting the specific areas that need work, with focused attention). Improvement comes from strategic effort — not just from trying harder at what's already comfortable.</p><p><strong>Single-tasking works.</strong> Cognitive science research found that multitasking forces the brain to constantly context-switch, wasting 20–40% of productive time. This applies to emotional work too: giving your journaling five undivided minutes is more useful than twenty distracted ones.</p><p><strong>Try the 20-5 approach:</strong> 20 minutes of focused work, 5 minutes away from screens. Brief mental breaks prevent the vigilance decrements that make sustained focus harder over time. Think of attention like a muscle — it needs both exertion and recovery.</p><p><strong>Closing the loop:</strong> This week, look back at your journal from Week 1. What's different? Not perfect — different. What's one moment this month where you responded to yourself with more gentleness than you would have eight weeks ago? That's the work. And it doesn't stop here.</p><h2>Go deeper</h2><ul><li><a href="https://poorvucenter.yale.edu/sites/default/files/files/Deliberate%20Practice%20and%20Learning.pdf" target="_blank">Deliberate Practice and Learning</a> — Yale Teaching Commons</li><li><a href="https://www.npr.org/2013/05/10/182861382/the-myth-of-multitasking" target="_blank">The Myth of Multitasking</a> — NPR</li><li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7075496/" target="_blank">Attention and Cognitive Control</a> — NIH</li></ul>`,
+    prompts:[{text:"Look back at your very first journal entry. What's one thing that's shifted — even slightly — in how you talk to yourself?",note:null},{text:"What's a practice from these 8 weeks you want to keep? Write it as a specific, concrete commitment (not \"be kinder to myself\" but \"when the inner critic shows up, I'll pause and label the thought before reacting\").",note:null},{text:"Write about a moment this month where you responded to yourself with more compassion than you would have 8 weeks ago. What made the difference?",note:null},{text:"What do you want to be true about how you treat yourself one year from now? Write a brief letter from that future self to today's self.",note:null},{text:"What's one single-tasking practice you can build into your daily routine — a time to give your attention to just one thing? Write about what that would look and feel like.",note:null}]}
 ];
 
-const GROUNDING_HTML = `
-<div class="panic-script-box">
-  <div class="panic-script-title">Panic script — when things feel like too much</div>
-  <div class="panic-script-body">
-    <strong>1.</strong> Name 1 safe place right now (even just the floor beneath your feet).<br>
-    <strong>2.</strong> Notice 1 color in the room.<br>
-    <strong>3.</strong> Press your feet into the floor and whisper: <em>"I am here. I am okay right now."</em><br>
-    <strong>4.</strong> Exhale slowly and completely.
-  </div>
-</div>
-<div class="grounding-item"><div class="grounding-item-title">5-4-3-2-1 body awareness</div><div class="grounding-item-body">Name out loud (or write):<ul style="margin-top:6px;"><li><strong>5</strong> things you can see</li><li><strong>4</strong> things you can physically feel</li><li><strong>3</strong> things you can hear</li><li><strong>2</strong> things you can smell</li><li><strong>1</strong> thing you can taste</li></ul></div></div>
-<div class="grounding-item"><div class="grounding-item-title">Weighted blanket hug</div><div class="grounding-item-body">Wrap your arms around yourself and squeeze for about 20 seconds. Deep pressure touch releases oxytocin, the calming hormone.</div></div>
-<div class="grounding-item"><div class="grounding-item-title">Hand over heart</div><div class="grounding-item-body">Place one or both hands over your heart. Feel your own warmth. Breathe slowly. You can silently say something kind to yourself — whatever comes.</div></div>
-<div class="grounding-item"><div class="grounding-item-title">Hot cocoa breath</div><div class="grounding-item-body">Inhale deeply through your nose, imagining something warm and comforting. Exhale slowly through slightly pursed lips — like blowing on something hot. Repeat 3–5 times.</div></div>
-<div class="grounding-item"><div class="grounding-item-title">Tactile awareness</div><div class="grounding-item-body">Slowly describe 3 textures you can touch right now. Say the words out loud if you can.</div></div>
-<div class="grounding-item"><div class="grounding-item-title">Grief stone</div><div class="grounding-item-body">Hold something small and meaningful in your palm — a stone, a coin, a button. Just hold it. Let yourself feel what comes.</div></div>
-<p style="font-size:12px;color:var(--g400);font-style:italic;margin-top:0.75rem;line-height:1.6;">No single technique works for everyone every time. Try a few and notice which one lands best for you — then keep that one close.</p>`;
+const GROUNDING_HTML=`<div class="panic-script-box"><div class="panic-script-title">Panic script — when things feel like too much</div><div class="panic-script-body"><strong>1.</strong> Name 1 safe place right now (even just the floor beneath your feet).<br><strong>2.</strong> Notice 1 color in the room.<br><strong>3.</strong> Press your feet into the floor and whisper: <em>"I am here. I am okay right now."</em><br><strong>4.</strong> Exhale slowly and completely.</div></div><div class="grounding-item"><div class="grounding-item-title">5-4-3-2-1 body awareness</div><div class="grounding-item-body">Name out loud (or write):<ul style="margin-top:6px;"><li><strong>5</strong> things you can see</li><li><strong>4</strong> things you can physically feel</li><li><strong>3</strong> things you can hear</li><li><strong>2</strong> things you can smell</li><li><strong>1</strong> thing you can taste</li></ul></div></div><div class="grounding-item"><div class="grounding-item-title">Weighted blanket hug</div><div class="grounding-item-body">Wrap your arms around yourself and squeeze for about 20 seconds. Deep pressure touch releases oxytocin, the calming hormone.</div></div><div class="grounding-item"><div class="grounding-item-title">Hand over heart</div><div class="grounding-item-body">Place one or both hands over your heart. Feel your own warmth. Breathe slowly. You can silently say something kind to yourself — whatever comes.</div></div><div class="grounding-item"><div class="grounding-item-title">Hot cocoa breath</div><div class="grounding-item-body">Inhale deeply through your nose, imagining something warm and comforting. Exhale slowly through slightly pursed lips — like blowing on something hot. Repeat 3–5 times.</div></div><div class="grounding-item"><div class="grounding-item-title">Tactile awareness</div><div class="grounding-item-body">Slowly describe 3 textures you can touch right now. Say the words out loud if you can.</div></div><div class="grounding-item"><div class="grounding-item-title">Grief stone</div><div class="grounding-item-body">Hold something small and meaningful in your palm — a stone, a coin, a button. Just hold it. Let yourself feel what comes.</div></div><p style="font-size:12px;color:var(--g400);font-style:italic;margin-top:0.75rem;line-height:1.6;">No single technique works for everyone every time. Try a few and notice which one lands best for you.</p>`;
 
-// ══ UTILITIES ══
+// ══ CELEBRATIONS ══
+const CEL={
+  journal:{
+    first:[
+      {e:"✨",t:"Your first entry.",b:"You showed up. That's the whole thing. The noticing begins here — everything else follows from this moment."},
+      {e:"🌱",t:"Day one.",b:"You started. That single act puts you ahead of every version of yourself that was just thinking about it."},
+      {e:"📖",t:"The journey begins.",b:"You opened the journal. That's the hardest step — and you did it."}
+    ],
+    streak:[
+      {e:"🔥",t:"Streak alive!",b:"You're building something real. Consistency is the whole game — not length, not perfection. Just showing up."},
+      {e:"⚡",t:"You're on a roll.",b:"Every entry, even a single sentence, is proof that you're choosing yourself today."},
+      {e:"🌊",t:"Keep the momentum.",b:"Habits are built in the boring middle — the days when you show up anyway. That's today. Well done."}
+    ],
+    return:[
+      {e:"💛",t:"Welcome back.",b:"Breaking a streak doesn't erase the work you've done. Every entry stands. Starting again counts just as much as continuing. One sentence is enough."},
+      {e:"🌤",t:"You came back.",b:"That's the thing about this practice — there's no falling behind, only returning. And here you are."},
+      {e:"🤍",t:"Here you are.",b:"Consistency matters more than perfection. More than length. More than anything. You showed up today — that's the whole point."}
+    ]
+  },
+  reading:{
+    first:[
+      {e:"📚",t:"First reading done.",b:"The science behind the practice makes everything stickier. You're not just journaling — you're understanding why it works."},
+      {e:"🧠",t:"You read it.",b:"Each week's reading is the foundation for the prompts. You just set yourself up for a deeper week."},
+      {e:"🌟",t:"Week 1 reading complete.",b:"You're already doing more than most people do. Keep going — each reading builds on the last."}
+    ],
+    streak:[
+      {e:"📖",t:"Reading streak!",b:"One reading per week, compounding over time. You're building the intellectual scaffolding for lasting change."},
+      {e:"✨",t:"Consistent learner.",b:"Showing up for the reading as well as the writing is what makes this program work. You're doing it right."},
+      {e:"🔥",t:"Week after week.",b:"The readings are short for a reason — to make this easy to maintain. And you're maintaining it. Nice."}
+    ],
+    return:[
+      {e:"💙",t:"Back to the reading.",b:"It doesn't matter that you missed a week. You're here now, and that's what counts. The knowledge still lands when you need it."},
+      {e:"🌱",t:"Picking it back up.",b:"There's no catching up required. Just read this week's, let it sit, and journal with it in mind. That's enough."},
+      {e:"🤍",t:"You came back.",b:"Returning after a gap is its own kind of strength. Consistency isn't a streak — it's a direction. You're still pointing the right way."}
+    ]
+  }
+};
+
+function getCelebration(type, situation){
+  const bank=CEL[type][situation];
+  return bank[Math.floor(Math.random()*bank.length)];
+}
+
+// ══ UTILS ══
 function hsh(s){let h=0;for(let i=0;i<s.length;i++){h=(Math.imul(31,h)+s.charCodeAt(i))|0;}return Math.abs(h).toString(16);}
 function uKey(e){return 'mj_u_'+hsh(e.toLowerCase());}
 function eKey(e){return 'mj_e_'+hsh(e.toLowerCase());}
 function rKey(e){return 'mj_r_'+hsh(e.toLowerCase());}
+function dKey(e){return 'mj_d_'+hsh(e.toLowerCase());} // dismissed banners
 function getUsers(){try{return JSON.parse(localStorage.getItem('mj_users')||'{}');}catch{return {};}}
 function saveUsers(u){localStorage.setItem('mj_users',JSON.stringify(u));}
 function getCur(){try{return JSON.parse(localStorage.getItem('mj_cur')||'null');}catch{return null;}}
@@ -592,16 +447,17 @@ function getEntries(email){try{return JSON.parse(localStorage.getItem(eKey(email
 function setEntries(email,e){localStorage.setItem(eKey(email),JSON.stringify(e));}
 function getReadings(email){try{return JSON.parse(localStorage.getItem(rKey(email))||'{}');}catch{return {};}}
 function setReadings(email,r){localStorage.setItem(rKey(email),JSON.stringify(r));}
+function getDismissed(email){try{return JSON.parse(localStorage.getItem(dKey(email))||'[]');}catch{return [];}}
+function addDismissed(email,key){const d=getDismissed(email);if(!d.includes(key)){d.push(key);localStorage.setItem(dKey(email),JSON.stringify(d));}}
 
 function todayStr(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
 function formatLong(ds){const[y,m,d]=ds.split('-').map(Number);return new Date(y,m-1,d).toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});}
+function dateFromStr(ds){const[y,m,d]=ds.split('-').map(Number);return new Date(y,m-1,d);}
 
-function getProgInfo(ds, joinDate){
-  const[y,m,d]=ds.split('-').map(Number);
-  const[jy,jm,jd]=(joinDate||ds).split('-').map(Number);
-  const dayNum=Math.max(0,Math.floor((new Date(y,m-1,d)-new Date(jy,jm-1,jd))/86400000));
+function getProgInfo(ds,joinDate){
+  const dayNum=Math.max(0,Math.floor((dateFromStr(ds)-dateFromStr(joinDate||ds))/86400000));
   const weekIdx=Math.min(Math.floor(dayNum/7),WEEKS.length-1);
-  const dayInWeek=dayNum%7; // 0=first day of week
+  const dayInWeek=dayNum%7;
   const promptIdx=Math.min(dayNum%5,4);
   const week=WEEKS[weekIdx];
   return{weekNum:weekIdx+1,weekTheme:week.theme,readingTitle:week.readingTitle,reading:week.reading,prompt:week.prompts[promptIdx],dayInWeek,dayNum};
@@ -618,8 +474,7 @@ function doSignup(){
   const name=document.getElementById('s-name').value.trim();
   const email=document.getElementById('s-email').value.trim().toLowerCase();
   const pw=document.getElementById('s-pw').value;
-  const err=document.getElementById('signup-err');
-  err.style.display='none';
+  const err=document.getElementById('signup-err');err.style.display='none';
   if(!name){err.textContent='Please enter your name.';err.style.display='block';return;}
   if(!email.includes('@')){err.textContent='Please enter a valid email.';err.style.display='block';return;}
   if(pw.length<6){err.textContent='Password must be at least 6 characters.';err.style.display='block';return;}
@@ -631,8 +486,7 @@ function doSignup(){
 function doLogin(){
   const email=document.getElementById('l-email').value.trim().toLowerCase();
   const pw=document.getElementById('l-pw').value;
-  const err=document.getElementById('login-err');
-  err.style.display='none';
+  const err=document.getElementById('login-err');err.style.display='none';
   if(!email||!pw){err.textContent='Please fill in both fields.';err.style.display='block';return;}
   const users=getUsers();const key=uKey(email);const user=users[key];
   if(!user){err.textContent='No account found. Please sign up first.';err.style.display='block';return;}
@@ -640,6 +494,7 @@ function doLogin(){
   const u={name:user.name,email:user.email,joined:user.joined};setCur(u);enterApp(u);
 }
 function doLogout(){setCur(null);document.getElementById('app-screen').style.display='none';document.getElementById('auth-screen').style.display='flex';}
+
 function enterApp(user){
   document.getElementById('auth-screen').style.display='none';
   document.getElementById('app-screen').style.display='block';
@@ -655,60 +510,63 @@ function loadTodayTab(user){
   const info=getProgInfo(today,user.joined);
   const entries=getEntries(user.email);
   const readings=getReadings(user.email);
-  const jStreak=calcStreak(entries,'j');
-  const rStreak=calcStreak(readings,'r');
+  const jS=calcDayStreak(entries);
+  const rS=calcReadingStreak(readings);
   const isDay1OfWeek=info.dayInWeek===0;
   const readingKey='w'+info.weekNum;
   const readingDone=!!readings[readingKey];
+  const isFirstDay=today===user.joined;
+  const dismissed=getDismissed(user.email);
 
   const[y,m,d]=today.split('-').map(Number);
   const dateLabel=new Date(y,m-1,d).toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
 
   let html=`
-  <div class="today-hero grad-hero">
+  <div class="today-hero">
     <div class="today-hero-date">${dateLabel}</div>
     <div class="today-hero-week">Week ${info.weekNum}</div>
     <div class="today-hero-theme">${info.weekTheme}</div>
   </div>
   <div class="streaks-row">
     <div class="streak-card journal">
-      <div class="streak-icon fire">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2C10 5 8 6 9 10C7 9 6 7 7 5C4 7 3 11 5 14C6 16 8 18 10 18.5C9 17 9 15.5 10 14.5C11 16 11 17.5 12 18.5C13 17.5 13 16 12 14.5C13 15.5 13 17 12 18.5C14 18 16 16 17 14C19 11 18 7 15 5C16 7 15 9 13 10C14 6 12 2 12 2Z" fill="white"/></svg>
-      </div>
-      <div>
-        <div class="streak-num">${jStreak.current}</div>
-        <div class="streak-lbl">journal streak</div>
-        <div class="streak-best">best: ${jStreak.best}</div>
-      </div>
+      <div class="streak-icon fire"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2C10 5 8 6 9 10C7 9 6 7 7 5C4 7 3 11 5 14C6 16 8 18 10 18.5C9 17 9 15.5 10 14.5C11 16 11 17.5 12 18.5C13 17.5 13 16 12 14.5C13 15.5 13 17 12 18.5C14 18 16 16 17 14C19 11 18 7 15 5C16 7 15 9 13 10C14 6 12 2 12 2Z" fill="white"/></svg></div>
+      <div><div class="streak-num" id="j-streak-num">${jS.current}</div><div class="streak-lbl">journal streak</div><div class="streak-best">best: ${jS.best}</div></div>
     </div>
     <div class="streak-card reading">
-      <div class="streak-icon book">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 4h7v16H4zM13 4h7v16h-7z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/></svg>
-      </div>
-      <div>
-        <div class="streak-num">${rStreak.current}</div>
-        <div class="streak-lbl">reading streak</div>
-        <div class="streak-best">best: ${rStreak.best}</div>
-      </div>
+      <div class="streak-icon book"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 4h7v16H4zM13 4h7v16h-7z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+      <div><div class="streak-num" id="r-streak-num">${rS.current}</div><div class="streak-lbl">reading streak</div><div class="streak-best">best: ${rS.best}</div></div>
     </div>
   </div>`;
 
-  // Reading card — show on day 1 of each week, or if unread
+  // First-day intro banner
+  if(isFirstDay&&!dismissed.includes('intro')){
+    html+=`<div class="intro-banner" id="intro-banner">
+      <button class="intro-dismiss" onclick="dismissBanner('intro')" aria-label="Dismiss">×</button>
+      <div class="intro-banner-title">Welcome to your 8-week journey.</div>
+      <div class="intro-banner-body">Before you dive in, take a moment to read the introduction — it explains how the program works and what to expect. You can always find it later in the <button class="intro-banner a" onclick="switchToLibrary()">Library tab</button>.</div>
+    </div>`;
+  }
+
+  // Reading card — show on day 1 of each week, or if not yet done this week
   if(isDay1OfWeek||!readingDone){
-    html+=`<div class="reading-card">
-      <div class="reading-card-header">
-        <div class="reading-card-eyebrow">Week ${info.weekNum} reading</div>
-        <div class="reading-card-title">${info.weekTheme}</div>
+    const bodyId='reading-body-'+info.weekNum;
+    html+=`<div class="reading-card" id="reading-card-main">
+      <div class="reading-card-header" onclick="toggleReadingCard()">
+        <div>
+          <div class="reading-card-eyebrow">Week ${info.weekNum} reading</div>
+          <div class="reading-card-title">${info.weekTheme}</div>
+        </div>
+        <span class="reading-toggle-icon" id="reading-toggle-icon">▾</span>
       </div>
-      <div class="reading-card-body">
-        <div class="reading-body-text">${info.reading}</div>
-      </div>
-      <div class="reading-divider"></div>
-      <div class="reading-complete-row">
-        <div class="reading-complete-label">Mark as read<small>Tracks your reading streak</small></div>
-        <button class="${readingDone?'mark-read-btn done':'mark-read-btn'}" id="mark-read-btn" onclick="markReadingDone('${readingKey}')">
-          ${readingDone?'✓ Done':'Mark done'}
-        </button>
+      <div class="reading-body-wrap" id="${bodyId}">
+        <div class="reading-card-body"><div class="reading-body-text">${info.reading}</div></div>
+        <div class="reading-divider"></div>
+        <div class="reading-complete-row">
+          <div class="reading-complete-label">Mark as read<small>Tracks your reading streak</small></div>
+          <button class="${readingDone?'mark-read-btn done':'mark-read-btn'}" id="mark-read-btn" onclick="markReadingDone('${readingKey}',${info.weekNum})">
+            ${readingDone?'✓ Done':'Mark done'}
+          </button>
+        </div>
       </div>
     </div>`;
   }
@@ -724,8 +582,7 @@ function loadTodayTab(user){
     html+=`<div class="prompt-card">
       <div class="prompt-card-top">
         <div class="prompt-tag">Week ${info.weekNum} — Day ${info.dayInWeek+1}</div>
-        <div class="prompt-text">${info.prompt.text}</div>
-        ${noteHtml}
+        <div class="prompt-text">${info.prompt.text}</div>${noteHtml}
       </div>
       <textarea class="prompt-textarea" id="journal-answer" placeholder="Write your thoughts here…"></textarea>
     </div>
@@ -736,19 +593,54 @@ function loadTodayTab(user){
   document.getElementById('today-content').innerHTML=html;
 }
 
-function markReadingDone(readingKey){
+// Reading card collapse/expand
+function toggleReadingCard(){
+  const wrap=document.querySelector('.reading-body-wrap');
+  const icon=document.getElementById('reading-toggle-icon');
+  if(!wrap||!icon)return;
+  const isOpen=wrap.style.display!=='none'&&wrap.style.maxHeight!=='0px';
+  if(isOpen){
+    wrap.style.display='none';
+    icon.classList.add('collapsed');
+  }else{
+    wrap.style.display='block';
+    icon.classList.remove('collapsed');
+  }
+}
+
+function collapseReadingCard(){
+  const wrap=document.querySelector('.reading-body-wrap');
+  const icon=document.getElementById('reading-toggle-icon');
+  if(wrap){wrap.style.display='none';}
+  if(icon){icon.classList.add('collapsed');}
+}
+
+function markReadingDone(readingKey,weekNum){
   const user=getCur();if(!user)return;
   const readings=getReadings(user.email);
   if(readings[readingKey])return;
   readings[readingKey]={key:readingKey,doneAt:new Date().toISOString(),date:todayStr()};
   setReadings(user.email,readings);
+
+  // Update button
   const btn=document.getElementById('mark-read-btn');
   if(btn){btn.textContent='✓ Done';btn.className='mark-read-btn done';}
-  showToast('Reading marked complete!');
-  // Refresh streaks
-  const rStreak=calcStreak(readings,'r');
-  document.querySelectorAll('.streak-card.reading .streak-num').forEach(el=>el.textContent=rStreak.current);
-  document.querySelectorAll('.streak-card.reading .streak-best').forEach(el=>el.textContent='best: '+rStreak.best);
+
+  // Collapse after short delay
+  setTimeout(()=>collapseReadingCard(),400);
+
+  // Determine celebration type
+  const rS=calcReadingStreak(readings);
+  const prevStreak=rS.current-1;
+  let situation='streak';
+  if(Object.keys(readings).length===1)situation='first';
+  else if(prevStreak<=0)situation='return';
+  else situation='streak';
+
+  // Update streak display
+  document.getElementById('r-streak-num').textContent=rS.current;
+
+  setTimeout(()=>showCelebration('reading',situation),500);
 }
 
 function saveEntry(){
@@ -757,10 +649,24 @@ function saveEntry(){
   const answer=(document.getElementById('journal-answer')||{value:''}).value.trim();
   const info=getProgInfo(today,user.joined);
   const entries=getEntries(user.email);
+  const wasStreak=calcDayStreak(entries).current;
+
   entries[today]={date:today,weekNum:info.weekNum,weekTheme:info.weekTheme,prompt:info.prompt.text,answer,savedAt:new Date().toISOString()};
   setEntries(user.email,entries);
-  showToast('Entry saved!');
-  loadTodayTab(user);
+
+  const newStreak=calcDayStreak(entries).current;
+
+  // Determine situation
+  let situation='streak';
+  const totalEntries=Object.keys(entries).length;
+  if(totalEntries===1)situation='first';
+  else if(wasStreak===0)situation='return';
+  else situation='streak';
+
+  // Update streak display
+  document.getElementById('j-streak-num').textContent=newStreak;
+
+  showCelebration('journal',situation,()=>loadTodayTab(user));
 }
 
 function viewTodayEntry(){
@@ -768,36 +674,85 @@ function viewTodayEntry(){
   openEntryModal(getEntries(user.email)[todayStr()]);
 }
 
-// ══ STREAKS ══
-function calcStreak(store, type){
-  // For journal entries: keys are date strings
-  // For readings: keys are 'w1','w2' etc — we use doneAt date
-  let dates=[];
-  if(type==='j'){
-    dates=Object.keys(store).sort();
-  }else{
-    dates=Object.values(store).map(r=>r.date).filter(Boolean).sort();
-  }
+// ══ STREAK CALCS ══
+// Daily journal streak — consecutive days
+function calcDayStreak(entries){
+  const dates=Object.keys(entries).sort();
   if(!dates.length)return{current:0,best:0};
   const today=todayStr();
-  const yest=(()=>{const d=new Date();d.setDate(d.getDate()-1);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');})();
+  const yest=offsetDay(today,-1);
   const dateSet=new Set(dates);
   let current=0;
   const startFrom=dateSet.has(today)?today:(dateSet.has(yest)?yest:null);
   if(startFrom){
-    let check=new Date(startFrom+'T12:00:00');
-    while(true){
-      const s=check.getFullYear()+'-'+String(check.getMonth()+1).padStart(2,'0')+'-'+String(check.getDate()).padStart(2,'0');
-      if(dateSet.has(s)){current++;check.setDate(check.getDate()-1);}else break;
-    }
+    let check=startFrom;
+    while(dateSet.has(check)){current++;check=offsetDay(check,-1);}
   }
   let best=0,run=0,prev=null;
   dates.forEach(k=>{
     if(!prev){run=1;}
-    else{const diff=(new Date(k+'T12:00:00')-new Date(prev+'T12:00:00'))/86400000;run=diff===1?run+1:1;}
+    else{const diff=(dateFromStr(k)-dateFromStr(prev))/86400000;run=diff===1?run+1:1;}
     best=Math.max(best,run);prev=k;
   });
   return{current,best:Math.max(best,current)};
+}
+
+// Reading streak — one per week (calendar week Mon–Sun)
+function calcReadingStreak(readings){
+  if(!Object.keys(readings).length)return{current:0,best:0};
+  // Get all weeks (by ISO week number) that have a completed reading
+  const weekSet=new Set();
+  Object.values(readings).forEach(r=>{
+    if(r.date)weekSet.add(isoWeek(r.date));
+  });
+  const weeks=[...weekSet].sort();
+  if(!weeks.length)return{current:0,best:0};
+
+  const thisWeek=isoWeek(todayStr());
+  const lastWeek=thisWeek-1; // simplified; good enough for streaks within a year
+
+  let current=0;
+  let check=weekSet.has(thisWeek)?thisWeek:weekSet.has(lastWeek)?lastWeek:null;
+  if(check!==null){
+    while(weekSet.has(check)){current++;check--;}
+  }
+
+  let best=0,run=0,prevW=null;
+  weeks.forEach(w=>{
+    if(prevW===null){run=1;}
+    else{run=w===prevW+1?run+1:1;}
+    best=Math.max(best,run);prevW=w;
+  });
+  return{current,best:Math.max(best,current)};
+}
+
+function isoWeek(ds){
+  const d=dateFromStr(ds);
+  const jan1=new Date(d.getFullYear(),0,1);
+  return Math.ceil(((d-jan1)/86400000+jan1.getDay()+1)/7);
+}
+
+function offsetDay(ds,n){
+  const d=dateFromStr(ds);d.setDate(d.getDate()+n);
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
+
+// ══ CELEBRATION MODAL ══
+let _celCallback=null;
+function showCelebration(type,situation,callback){
+  const c=getCelebration(type,situation);
+  document.getElementById('cel-emoji').textContent=c.e;
+  document.getElementById('cel-title').textContent=c.t;
+  document.getElementById('cel-body').textContent=c.b;
+  _celCallback=callback||null;
+  document.getElementById('celebrate-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeCelebrate(ev){if(ev.target===document.getElementById('celebrate-modal'))closeCelebrateDirect();}
+function closeCelebrateDirect(){
+  document.getElementById('celebrate-modal').classList.remove('open');
+  document.body.style.overflow='';
+  if(_celCallback){_celCallback();_celCallback=null;}
 }
 
 // ══ HISTORY ══
@@ -808,43 +763,55 @@ function loadHistoryTab(email){
   if(!keys.length){list.innerHTML=`<div class="empty-state"><p>No entries yet.<br>Start your first journal entry today!</p></div>`;return;}
   list.innerHTML='';
   keys.forEach(ds=>{
-    const e=entries[ds];
-    const card=document.createElement('div');card.className='entry-card';
+    const e=entries[ds];const card=document.createElement('div');card.className='entry-card';
     card.innerHTML=`<div class="entry-date-lbl">${formatLong(ds)}</div><div class="entry-theme">Week ${e.weekNum} — ${e.weekTheme}</div><div class="entry-preview">${e.answer||'<em style="color:var(--g400)">No text recorded</em>'}</div>`;
     card.onclick=()=>openEntryModal(e);list.appendChild(card);
   });
 }
 
 // ══ PROGRESS ══
-function loadProgressTab(email){
+function loadProgressTab(email,joinDate){
   const entries=getEntries(email);
   const readings=getReadings(email);
-  const jS=calcStreak(entries,'j');
-  const rS=calcStreak(readings,'r');
+  const jS=calcDayStreak(entries);
+  const rS=calcReadingStreak(readings);
   document.getElementById('st-total').textContent=Object.keys(entries).length;
   document.getElementById('st-j-streak').textContent=jS.current;
   document.getElementById('st-r-total').textContent=Object.keys(readings).length;
   document.getElementById('st-r-streak').textContent=rS.current;
-  buildWeekDots(entries,readings);
-  buildCalendar(entries,readings);
+  buildWeekDots(entries,joinDate);
+  buildCalendar(entries,readings,joinDate);
 }
 
-function buildWeekDots(entries,readings){
+function buildWeekDots(entries,joinDate){
   const today=todayStr();
   const c=document.getElementById('week-dots');c.innerHTML='';
-  const now=new Date();const sw=new Date(now);sw.setDate(now.getDate()-now.getDay());
-  ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach((name,i)=>{
-    const dd=new Date(sw);dd.setDate(sw.getDate()+i);
+  const joinD=dateFromStr(joinDate||today);
+  // Start week from the join day-of-week
+  const joinDow=joinD.getDay();
+  const now=new Date();
+  // Find the start of the current "week" aligned to join DOW
+  const daysSinceStart=Math.floor((now-joinD)/86400000);
+  const weekStartOffset=daysSinceStart%7;
+  const weekStart=new Date(now);weekStart.setDate(now.getDate()-weekStartOffset);
+
+  const DAYS=['Su','Mo','Tu','We','Th','Fr','Sa'];
+  for(let i=0;i<7;i++){
+    const dd=new Date(weekStart);dd.setDate(weekStart.getDate()+i);
     const ds=dd.getFullYear()+'-'+String(dd.getMonth()+1).padStart(2,'0')+'-'+String(dd.getDate()).padStart(2,'0');
-    const done=!!entries[ds];const isToday=ds===today;
+    const isPreJoin=dd<joinD;
+    const done=!!entries[ds];
+    const isToday=ds===today;
+    const dayName=DAYS[dd.getDay()];
     const div=document.createElement('div');div.className='wday';
-    div.innerHTML=`<div class="wday-name">${name}</div><div class="wdot ${done?'done':''} ${isToday&&!done?'today-empty':''}">${done?`<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7L6 10L11 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`:''}</div>`;
+    div.innerHTML=`<div class="wday-name">${dayName}</div><div class="wdot ${isPreJoin?'pre-join':done?'done':''} ${isToday&&!done&&!isPreJoin?'today-empty':''}">${done?`<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7L6 10L11 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`:''}</div>`;
     c.appendChild(div);
-  });
+  }
 }
 
-function buildCalendar(entries,readings){
+function buildCalendar(entries,readings,joinDate){
   const today=todayStr();const now=new Date();const y=now.getFullYear(),m=now.getMonth();
+  const joinD=dateFromStr(joinDate||today);
   document.getElementById('cal-title').textContent=now.toLocaleDateString('en-US',{month:'long',year:'numeric'});
   const g=document.getElementById('cal-grid');g.innerHTML='';
   ['S','M','T','W','T','F','S'].forEach(d=>{const el=document.createElement('div');el.className='cal-hdr';el.textContent=d;g.appendChild(el);});
@@ -852,83 +819,119 @@ function buildCalendar(entries,readings){
   const firstDay=new Date(y,m,1).getDay();const dim=new Date(y,m+1,0).getDate();
   for(let i=0;i<firstDay;i++){const el=document.createElement('div');el.className='cal-day';g.appendChild(el);}
   for(let day=1;day<=dim;day++){
+    const dd=new Date(y,m,day);
     const ds=y+'-'+String(m+1).padStart(2,'0')+'-'+String(day).padStart(2,'0');
+    const isPreJoin=dd<joinD;
     const el=document.createElement('div');
     let cls='cal-day';
-    if(entries[ds])cls+=' has-j';
-    if(readingDates.has(ds))cls+=' has-r';
-    if(ds===today)cls+=' today';
+    if(isPreJoin){cls+=' pre-join';}
+    else{
+      if(entries[ds])cls+=' has-j';
+      if(readingDates.has(ds))cls+=' has-r';
+      if(ds===today)cls+=' today';
+    }
     el.className=cls;el.textContent=day;g.appendChild(el);
   }
 }
 
 // ══ LIBRARY ══
 function buildLibrary(){
-  document.getElementById('lib-intro-content').innerHTML=`
-    <p><em>"The curious paradox is that when I accept myself just as I am, then I can change."</em><br>— Carl Rogers</p>
-    <hr>
-    <p>This is an 8-week practice designed to help you develop greater self-awareness, emotional resilience, and a more compassionate relationship with yourself. Each week builds on the last — you're not just collecting insights, you're growing a set of skills that compound over time.</p>
-    <h2>What this practice is</h2>
-    <p>Each week you'll read one short piece, then journal with a few brief prompts. That's it. The readings explain the science; the prompts make it personal. You don't need to write much. Even a sentence counts. Consistency matters far more than length.</p>
-    <h2>A note on growth mindset</h2>
-    <p>Before you begin, there's one idea worth holding: <strong>your brain can change.</strong> People who believed their abilities and responses could improve through effort — a <em>growth mindset</em> — were more resilient, more persistent, and more willing to sit with discomfort long enough to learn from it. You don't have to be good at this. You just have to show up.</p>
-    <h2>A framework for grief</h2>
-    <p>If you are grieving — whether a person, a relationship, a version of your life — this journal was designed with you in mind. Grief researchers describe healthy grieving as an oscillation between two orientations: <strong>loss-orientation</strong> (feeling the pain, missing what's gone) and <strong>restoration-orientation</strong> (re-engaging with life, rebuilding). Both are necessary. Neither is wrong. You're not behind. You can't do this wrong.</p>
-    <h2>What to expect over 8 weeks</h2>
-    <p><strong>Weeks 1–2:</strong> Most people begin to notice their inner critic more quickly — not because it gets louder, but because the noticing itself creates a small but meaningful pause between thought and reaction.</p>
-    <p><strong>Weeks 3–4:</strong> Emotional awareness starts to sharpen. You may find you can name what you're feeling more precisely, and locate where you feel it in your body.</p>
-    <p><strong>Weeks 5–6:</strong> Patterns become visible. You start to see recurring triggers. Self-compassion practices begin to feel less like an idea and more like a usable tool.</p>
-    <p><strong>Weeks 7–8:</strong> Many people notice a quieter relationship with the inner critic — not its absence, but less automatic compliance with it.</p>
-    <h2>How to use this journal</h2>
-    <p><strong>Readings</strong> come at the start of each week. They're short by design. <strong>Prompts</strong> are one per day. <strong>Grounding Practices</strong> are there for when things get overwhelming — tap the Panic Button anytime. <strong>Some days, skip.</strong> Write "not today" and close the journal. That counts too.</p>`;
-
-  const GLOSSARY_TERMS=[
-    {word:"Amygdala",def:"The brain's \"alarm system\" that triggers fear and stress responses. Fast and automatic — useful in genuine danger, sometimes overactive in everyday situations."},
-    {word:"Authenticity",def:"Acting in alignment with your true values and desires rather than external expectations. Not the same as radical honesty; more about internal congruence."},
-    {word:"Body Scan",def:"A mindfulness practice of slowly noticing physical sensations from head to toe, without trying to change them. Used to build interoceptive awareness and reduce stress."},
-    {word:"Cognitive Defusion",def:"An ACT technique for detaching from negative thoughts by observing them without judgment, rather than arguing with them or believing them automatically."},
-    {word:"Cognitive Distortions",def:"Automatic thinking patterns that systematically skew perception. Common ones: catastrophizing, mind-reading, and all-or-nothing thinking."},
-    {word:"Compassionate Reparenting",def:"Responding to your inner critic as a kind, wise parent would respond to a frightened child — with warmth, clarity, and without shaming."},
-    {word:"Dopamine",def:"A neurotransmitter associated with motivation, reward, and curiosity. Released when we make progress toward a goal, experience novelty, or anticipate something positive."},
-    {word:"Dual Process Model",def:"Stroebe & Schut's (1999) model of grief, describing healthy oscillation between loss-orientation (feeling the grief) and restoration-orientation (re-engaging with life). Both are necessary."},
-    {word:"Emotional Granularity",def:"The ability to identify subtle differences between emotional states. Research shows higher granularity predicts faster emotional recovery."},
-    {word:"Growth Mindset",def:"The belief that abilities and responses can improve through effort and strategy, as opposed to a fixed mindset that treats these as permanent. (Carol Dweck)"},
-    {word:"Inner Critic",def:"The internal voice that magnifies failures, predicts rejection, and minimizes successes. A product of the nervous system's threat-detection wiring, not an accurate narrator of your worth."},
-    {word:"Interoception",def:"The perception of internal body signals: heartbeat, breath, tension, temperature, hunger. A key component of emotional awareness and stress regulation."},
-    {word:"Locus of Control",def:"The degree to which a person believes they can influence outcomes. Internal locus correlates with lower anxiety and greater resilience."},
-    {word:"Negativity Bias",def:"The brain's evolutionary tendency to register and remember negative experiences more vividly than positive ones. A safety feature that often misfires in modern life."},
-    {word:"RAIN Meditation",def:"Recognize, Allow, Investigate, Nurture. A mindfulness practice for working with difficult emotions without suppressing or being overwhelmed by them."},
-    {word:"Self-Compassion (Neff)",def:"Treating yourself with the same kindness you'd offer a good friend in difficulty. Comprises three elements: mindfulness, common humanity, and self-kindness."},
-    {word:"Self-Concordance",def:"The degree to which goals align with personal values and intrinsic motivation. Self-concordant goals are significantly more likely to be sustained and achieved."}
-  ];
-  document.getElementById('lib-glossary-content').innerHTML=GLOSSARY_TERMS.map(t=>`<div class="term"><div class="term-word">${t.word}</div><div class="term-def">${t.def}</div></div>`).join('');
-
-  document.getElementById('lib-further-content').innerHTML=`
-    <h2>Books</h2>
-    <p><strong>Self-Compassion: The Proven Power of Being Kind to Yourself</strong> — Kristin Neff<br><small style="color:var(--g400)">Science-backed foundation for quieting your inner critic. Extends Week 6.</small></p>
-    <p><strong>The Gifts of Imperfection</strong> — Brené Brown<br><small style="color:var(--g400)">On authenticity, shame resilience, and self-worth. Extends Weeks 1, 6, and 7.</small></p>
-    <p><strong>Mindset: The New Psychology of Success</strong> (2017 ed.) — Carol Dweck<br><small style="color:var(--g400)">How growth mindset boosts learning, resilience, and motivation. Extends Week 2.</small></p>
-    <p><strong>The Happiness Trap</strong> — Russ Harris<br><small style="color:var(--g400)">ACT-based strategies for working with difficult thoughts. Best companion to Weeks 1 and 2.</small></p>
-    <p><strong>Permission to Feel</strong> — Marc Brackett<br><small style="color:var(--g400)">A guide to emotional intelligence — naming, understanding, and using emotions skillfully. Extends Week 3.</small></p>
-    <p><strong>Radical Compassion</strong> — Tara Brach<br><small style="color:var(--g400)">Mindfulness and the RAIN meditation technique. A gentler companion to the whole program.</small></p>
-    <p><strong>Atomic Habits</strong> — James Clear<br><small style="color:var(--g400)">Practical science of small change and habit formation. Supports Weeks 2 and 8.</small></p>
-    <hr>
-    <h2>For grief specifically</h2>
-    <p><strong>It's OK That You're Not OK</strong> — Megan Devine<br><small style="color:var(--g400)">The most compassionate grief resource for general readers. Validates grief without trying to fix or rush it.</small></p>
-    <p><strong>The Wisdom of Your Body</strong> — Hillary L. McBride, PhD<br><small style="color:var(--g400)">How the body holds and heals from trauma, grief, and chronic stress. Strong companion to Weeks 3 and 6.</small></p>
-    <p><strong>Waking the Tiger: Healing Trauma</strong> — Peter A. Levine, PhD<br><small style="color:var(--g400)">How trauma gets stored in the nervous system and how it can be released.</small></p>
-    <hr>
-    <h2>Audiobooks & meditations</h2>
-    <p><strong>Radical Compassion (audiobook)</strong> — Tara Brach<br><small style="color:var(--g400)">Best experienced as audio; includes guided RAIN meditations.</small></p>
-    <p><strong>Self-Compassion Meditations</strong> — Kristin Neff<br><small style="color:var(--g400)">Free guided meditations at <a href="https://self-compassion.org/guided-meditations-and-exercises/" target="_blank">self-compassion.org</a></small></p>`;
-
-  document.getElementById('lib-grounding-content').innerHTML=GROUNDING_HTML;
+  const html=`
+  <div class="library-section">
+    <div class="lib-section-title">Getting started</div>
+    <div class="lib-card" onclick="toggleLib('intro')">
+      <div class="lib-card-header">
+        <div class="lib-card-icon" style="background:linear-gradient(135deg,var(--p600),var(--p400));"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="white" stroke-width="1.5"/><path d="M10 9v5M10 7v1" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div><div class="lib-card-name">Introduction</div><div class="lib-card-desc">How this program works</div></div>
+        <div class="lib-card-chevron" id="chev-intro">›</div>
+      </div>
+      <div class="lib-card-body" id="lib-intro"><div class="lib-content">${INTRO_HTML()}</div></div>
+    </div>
+  </div>
+  <div class="library-section">
+    <div class="lib-section-title">Weekly readings</div>
+    ${WEEKS.map((w,i)=>`
+    <div class="week-reading-item">
+      <div class="week-reading-hdr" onclick="toggleWeekReading(${i})">
+        <div class="week-reading-hdr-left">
+          <div class="week-reading-eyebrow">Week ${i+1}</div>
+          <div class="week-reading-title">${w.theme}</div>
+        </div>
+        <span class="week-reading-chevron" id="wchev-${i}">›</span>
+      </div>
+      <div class="week-reading-body" id="wreading-${i}">
+        <div class="week-reading-body-text">${w.reading}</div>
+      </div>
+    </div>`).join('')}
+  </div>
+  <div class="library-section">
+    <div class="lib-section-title">Reference</div>
+    <div class="lib-card" onclick="toggleLib('glossary')">
+      <div class="lib-card-header">
+        <div class="lib-card-icon" style="background:linear-gradient(135deg,var(--t600),var(--t400));"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="2" stroke="white" stroke-width="1.5"/><path d="M7 7h6M7 10h4M7 13h5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div><div class="lib-card-name">Glossary</div><div class="lib-card-desc">Key terms explained</div></div>
+        <div class="lib-card-chevron" id="chev-glossary">›</div>
+      </div>
+      <div class="lib-card-body" id="lib-glossary"><div class="lib-content">${GLOSSARY_HTML()}</div></div>
+    </div>
+    <div class="lib-card" onclick="toggleLib('further')">
+      <div class="lib-card-header">
+        <div class="lib-card-icon" style="background:linear-gradient(135deg,var(--a600),var(--a400));"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 5h12M4 8h8M4 11h10M4 14h6" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div><div class="lib-card-name">Further exploration</div><div class="lib-card-desc">Books, articles & meditations</div></div>
+        <div class="lib-card-chevron" id="chev-further">›</div>
+      </div>
+      <div class="lib-card-body" id="lib-further"><div class="lib-content">${FURTHER_HTML()}</div></div>
+    </div>
+  </div>
+  <div class="library-section">
+    <div class="lib-section-title">Support</div>
+    <div class="lib-card" onclick="toggleLib('grounding')">
+      <div class="lib-card-header">
+        <div class="lib-card-icon" style="background:linear-gradient(135deg,var(--c600),var(--c400));"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3c0 0-5 4-5 8a5 5 0 0010 0c0-4-5-8-5-8z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+        <div><div class="lib-card-name">Grounding practices</div><div class="lib-card-desc">For overwhelm & hard moments</div></div>
+        <div class="lib-card-chevron" id="chev-grounding">›</div>
+      </div>
+      <div class="lib-card-body" id="lib-grounding"><div class="lib-content">${GROUNDING_HTML}</div></div>
+    </div>
+  </div>`;
+  document.getElementById('library-content').innerHTML=html;
 }
 
 function toggleLib(id){
   const body=document.getElementById('lib-'+id);
+  const chev=document.getElementById('chev-'+id);
   if(!body)return;
-  body.classList.toggle('open');
+  const open=body.classList.toggle('open');
+  if(chev)chev.classList.toggle('open',open);
+}
+
+function toggleWeekReading(idx){
+  const body=document.getElementById('wreading-'+idx);
+  const chev=document.getElementById('wchev-'+idx);
+  if(!body)return;
+  const open=body.classList.toggle('open');
+  if(chev)chev.classList.toggle('open',open);
+}
+
+function INTRO_HTML(){return `<p><em>"The curious paradox is that when I accept myself just as I am, then I can change."</em><br>— Carl Rogers</p><hr><p>This is an 8-week practice designed to help you develop greater self-awareness, emotional resilience, and a more compassionate relationship with yourself. Each week builds on the last — you're not just collecting insights, you're growing a set of skills that compound over time.</p><h2>What this practice is</h2><p>Each week you'll read one short piece, then journal with a few brief prompts. That's it. The readings explain the science; the prompts make it personal. You don't need to write much. Even a sentence counts. Consistency matters far more than length.</p><h2>A note on growth mindset</h2><p>Before you begin, there's one idea worth holding: <strong>your brain can change.</strong> People who believed their abilities and responses could improve through effort — a <em>growth mindset</em> — were more resilient, more persistent, and more willing to sit with discomfort long enough to learn from it. You don't have to be good at this. You just have to show up.</p><h2>A framework for grief</h2><p>If you are grieving — whether a person, a relationship, a version of your life — this journal was designed with you in mind. Healthy grieving oscillates between <strong>loss-orientation</strong> (feeling the pain) and <strong>restoration-orientation</strong> (re-engaging with life). Both are necessary. Neither is wrong. You're not behind. You can't do this wrong.</p><h2>What to expect over 8 weeks</h2><p><strong>Weeks 1–2:</strong> You begin to notice your inner critic more quickly — not because it gets louder, but because the noticing itself creates a small but meaningful pause.</p><p><strong>Weeks 3–4:</strong> Emotional awareness starts to sharpen. You may find you can name what you're feeling more precisely, and locate where you feel it in your body.</p><p><strong>Weeks 5–6:</strong> Patterns become visible. Self-compassion practices begin to feel less like an idea and more like a usable tool.</p><p><strong>Weeks 7–8:</strong> Many people notice a quieter relationship with the inner critic — not its absence, but less automatic compliance with it.</p><h2>How to use this journal</h2><p><strong>Readings</strong> come at the start of each week. <strong>Prompts</strong> are one per day. <strong>Grounding Practices</strong> are there for when things get overwhelming — tap the Panic Button anytime. <strong>Some days, skip.</strong> Write "not today" and close the journal. That counts too.</p>`;}
+
+function GLOSSARY_HTML(){
+  const terms=[{w:"Amygdala",d:"The brain's \"alarm system\" that triggers fear and stress responses. Fast and automatic — useful in genuine danger, sometimes overactive in everyday situations."},{w:"Authenticity",d:"Acting in alignment with your true values and desires rather than external expectations. Not the same as radical honesty; more about internal congruence."},{w:"Body Scan",d:"A mindfulness practice of slowly noticing physical sensations from head to toe, without trying to change them. Used to build interoceptive awareness and reduce stress."},{w:"Cognitive Defusion",d:"An ACT technique for detaching from negative thoughts by observing them without judgment, rather than arguing with them or believing them automatically."},{w:"Cognitive Distortions",d:"Automatic thinking patterns that systematically skew perception. Common ones: catastrophizing, mind-reading, and all-or-nothing thinking."},{w:"Compassionate Reparenting",d:"Responding to your inner critic as a kind, wise parent would respond to a frightened child — with warmth, clarity, and without shaming."},{w:"Dopamine",d:"A neurotransmitter associated with motivation, reward, and curiosity. Released when we make progress toward a goal, experience novelty, or anticipate something positive."},{w:"Dual Process Model",d:"Stroebe & Schut's (1999) model of grief, describing healthy oscillation between loss-orientation (feeling the grief) and restoration-orientation (re-engaging with life). Both are necessary."},{w:"Emotional Granularity",d:"The ability to identify subtle differences between emotional states. Research shows higher granularity predicts faster emotional recovery."},{w:"Growth Mindset",d:"The belief that abilities and responses can improve through effort and strategy, as opposed to a fixed mindset. (Carol Dweck)"},{w:"Inner Critic",d:"The internal voice that magnifies failures, predicts rejection, and minimizes successes. A product of the nervous system's threat-detection wiring, not an accurate narrator of your worth."},{w:"Interoception",d:"The perception of internal body signals: heartbeat, breath, tension, temperature, hunger. A key component of emotional awareness and stress regulation."},{w:"Locus of Control",d:"The degree to which a person believes they can influence outcomes. Internal locus correlates with lower anxiety and greater resilience."},{w:"Negativity Bias",d:"The brain's evolutionary tendency to register and remember negative experiences more vividly than positive ones. A safety feature that often misfires in modern life."},{w:"RAIN Meditation",d:"Recognize, Allow, Investigate, Nurture. A mindfulness practice for working with difficult emotions without suppressing or being overwhelmed by them."},{w:"Self-Compassion (Neff)",d:"Treating yourself with the same kindness you'd offer a good friend in difficulty. Comprises three elements: mindfulness, common humanity, and self-kindness."},{w:"Self-Concordance",d:"The degree to which goals align with personal values and intrinsic motivation. Self-concordant goals are significantly more likely to be sustained and achieved."}];
+  return terms.map(t=>`<div class="term"><div class="term-word">${t.w}</div><div class="term-def">${t.d}</div></div>`).join('');
+}
+
+function FURTHER_HTML(){return `<h2>Books</h2><p><strong>Self-Compassion: The Proven Power of Being Kind to Yourself</strong> — Kristin Neff<br><small style="color:var(--g400)">Science-backed foundation for quieting your inner critic. Extends Week 6.</small></p><p><strong>The Gifts of Imperfection</strong> — Brené Brown<br><small style="color:var(--g400)">On authenticity, shame resilience, and self-worth. Extends Weeks 1, 6, and 7.</small></p><p><strong>Mindset: The New Psychology of Success</strong> (2017 ed.) — Carol Dweck<br><small style="color:var(--g400)">How growth mindset boosts learning, resilience, and motivation. Extends Week 2.</small></p><p><strong>The Happiness Trap</strong> — Russ Harris<br><small style="color:var(--g400)">ACT-based strategies for working with difficult thoughts. Best companion to Weeks 1 and 2.</small></p><p><strong>Permission to Feel</strong> — Marc Brackett<br><small style="color:var(--g400)">A guide to emotional intelligence. Extends Week 3.</small></p><p><strong>Radical Compassion</strong> — Tara Brach<br><small style="color:var(--g400)">Mindfulness and the RAIN meditation technique. A gentler companion to the whole program.</small></p><p><strong>Atomic Habits</strong> — James Clear<br><small style="color:var(--g400)">Practical science of small change and habit formation. Supports Weeks 2 and 8.</small></p><hr><h2>For grief specifically</h2><p><strong>It's OK That You're Not OK</strong> — Megan Devine<br><small style="color:var(--g400)">The most compassionate grief resource for general readers. Validates grief without trying to fix or rush it.</small></p><p><strong>The Wisdom of Your Body</strong> — Hillary L. McBride, PhD<br><small style="color:var(--g400)">How the body holds and heals from trauma, grief, and chronic stress. Strong companion to Weeks 3 and 6.</small></p><p><strong>Waking the Tiger: Healing Trauma</strong> — Peter A. Levine, PhD<br><small style="color:var(--g400)">How trauma gets stored in the nervous system and how it can be released.</small></p><hr><h2>Audiobooks & meditations</h2><p><strong>Radical Compassion (audiobook)</strong> — Tara Brach<br><small style="color:var(--g400)">Best experienced as audio; includes guided RAIN meditations.</small></p><p><strong>Self-Compassion Meditations</strong> — Kristin Neff<br><small style="color:var(--g400)">Free guided meditations at <a href="https://self-compassion.org/guided-meditations-and-exercises/" target="_blank">self-compassion.org</a></small></p>`;}
+
+// ══ BANNER DISMISS ══
+function dismissBanner(key){
+  const user=getCur();if(!user)return;
+  addDismissed(user.email,key);
+  const el=document.getElementById('intro-banner');
+  if(el)el.remove();
+}
+function switchToLibrary(){
+  const btn=document.querySelector('.nav-tab:nth-child(4)');
+  if(btn)switchTab('library',btn);
 }
 
 // ══ ENTRY MODAL ══
@@ -955,7 +958,7 @@ function switchTab(name,btn){
   document.getElementById('tab-'+name).classList.add('active');
   const user=getCur();if(!user)return;
   if(name==='history')loadHistoryTab(user.email);
-  if(name==='progress')loadProgressTab(user.email);
+  if(name==='progress')loadProgressTab(user.email,user.joined);
 }
 
 // ══ TOAST ══
