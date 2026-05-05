@@ -573,11 +573,11 @@ function loadTodayTab(user){
   const isFirstDay=today===user.joined;
   const todayIsRestDay=isRestDay(today,user.joined);
   const criticName=getCriticName(user.email);
+  const dismissed=getDismissed(user.email);
   // Show critic name modal on day 2 of week 1 (dayNum===1) if not yet set/dismissed
   if(info.dayNum===1&&!criticName&&!dismissed.includes('critic-modal')){
     setTimeout(()=>openCriticModal(),600);
   }
-  const dismissed=getDismissed(user.email);
 
   const[y,m,d]=today.split('-').map(Number);
   const dateLabel=new Date(y,m-1,d).toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
